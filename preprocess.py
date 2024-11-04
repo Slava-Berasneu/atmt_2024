@@ -3,15 +3,10 @@ import collections
 import logging
 import os
 import sys
-import re
+import subprocess
 import pickle
+import re
 
-# establish link to seq2seq dir
-# scripts_dir = os.path.dirname(os.path.abspath(__file__))
-# base_dir = os.path.join(scripts_dir, "..")
-# sys.path.append(base_dir)
-
-from seq2seq import utils
 from seq2seq.data.dictionary import Dictionary
 
 SPACE_NORMALIZER = re.compile("\s+")
@@ -21,75 +16,6 @@ def word_tokenize(line):
     line = SPACE_NORMALIZER.sub(" ", line)
     line = line.strip()
     return line.split()
-
-
-def get_args():
-    parser = argparse.ArgumentParser('Data pre-processing)')
-    parser.add_argument('--source-lang', default=None, metavar='SRC', help='source language')
-    parser.add_argument('--target-lang', default=None, metavar='TGT', help='target language')
-
-    parser.add_argument('--train-prefix', default=None, metavar='FP', help='train file prefix')
-    parser.add_argument('--tiny-train-prefix', default=None, metavar='FP', help='tiny train file prefix')
-    parser.add_argument('--valid-prefix', default=None, metavar='FP', help='valid file prefix')
-    parser.add_argument('--test-prefix', default=None, metavar='FP', help='test file prefix')
-    parser.add_argument('--dest-dir', default='data-bin', metavar='DIR', help='destination dir')
-
-    parser.add_argument('--threshold-src', default=2, type=int,
-                        help='map words appearing less than threshold times to unknown')
-    parser.add_argument('--num-words-src', default=-1, type=int, help='number of source words to retain')
-    parser.add_argument('--threshold-tgt', default=2, type=int,
-                        help='map words appearing less than threshold times to unknown')
-    parser.add_argument('--num-words-tgt', default=-1, type=int, help='number of target words to retain')
-    parser.add_argument('--vocab-src', default=None, type=str, help='path to dictionary')
-    parser.add_argument('--vocab-trg', default=None, type=str, help='path to dictionary')
-    parser.add_argument('--quiet', action='store_true', help='no logging')
-
-    return parser.parse_args()
-
-
-def main(args):
-    os.makedirs(args.dest_dir, exist_ok=True)
-    if not args.vocab_src:
-        src_dict = build_dictionary([args.train_prefix + '.' + args.source_lang])
-
-        src_dict.finalize(threshold=args.threshold_src, num_words=args.num_words_src)
-        src_dict.save(os.path.join(args.dest_dir, 'dict.' + args.source_lang))
-        if not args.quiet:
-            logging.info('Built a source dictionary ({}) with {} words'.format(args.source_lang, len(src_dict)))
-
-    else:
-        src_dict = Dictionary.load(args.vocab_src)
-        if not args.quiet:
-            logging.info('Loaded a source dictionary ({}) with {} words'.format(args.target_lang, len(src_dict)))
-
-    if not args.vocab_trg:
-        tgt_dict = build_dictionary([args.train_prefix + '.' + args.target_lang])
-
-        tgt_dict.finalize(threshold=args.threshold_tgt, num_words=args.num_words_tgt)
-        tgt_dict.save(os.path.join(args.dest_dir, 'dict.' + args.target_lang))
-        if not args.quiet:
-            logging.info('Built a target dictionary ({}) with {} words'.format(args.target_lang, len(tgt_dict)))
-
-    else:
-        tgt_dict = Dictionary.load(args.vocab_trg)
-        if not args.quiet:
-            logging.info('Loaded a target dictionary ({}) with {} words'.format(args.target_lang, len(tgt_dict)))
-
-    def make_split_datasets(lang, dictionary):
-        if args.train_prefix is not None:
-            make_binary_dataset(args.train_prefix + '.' + lang, os.path.join(args.dest_dir, 'train.' + lang),
-                                dictionary)
-        if args.tiny_train_prefix is not None:
-            make_binary_dataset(args.tiny_train_prefix + '.' + lang, os.path.join(args.dest_dir, 'tiny_train.' + lang),
-                                dictionary)
-        if args.valid_prefix is not None:
-            make_binary_dataset(args.valid_prefix + '.' + lang, os.path.join(args.dest_dir, 'valid.' + lang),
-                                dictionary)
-        if args.test_prefix is not None:
-            make_binary_dataset(args.test_prefix + '.' + lang, os.path.join(args.dest_dir, 'test.' + lang), dictionary)
-
-    make_split_datasets(args.source_lang, src_dict)
-    make_split_datasets(args.target_lang, tgt_dict)
 
 
 def build_dictionary(filenames, tokenize=word_tokenize):
@@ -103,32 +29,233 @@ def build_dictionary(filenames, tokenize=word_tokenize):
     return dictionary
 
 
-def make_binary_dataset(input_file, output_file, dictionary, tokenize=word_tokenize, append_eos=True):
+def make_binary_dataset(input_file, output_file, dictionary, tokenize=lambda x: x.split(),
+                        append_eos=True):
+    """
+    Converts tokenized text into binary format using the provided dictionary.
+
+    Args:
+        input_file (str): Path to the tokenized input text file.
+        output_file (str): Path to save the binary dataset.
+        dictionary (Dictionary): Source or target language dictionary.
+        tokenize (callable): Function to tokenize each line.
+        append_eos (bool): Whether to append an end-of-sentence token.
+    """
     nsent, ntok = 0, 0
     unk_counter = collections.Counter()
 
-    def unk_consumer(word, idx):
-        if idx == dictionary.unk_idx and word != dictionary.unk_word:
-            unk_counter.update([word])
-
     tokens_list = []
-    with open(input_file, 'r') as inf:
+    with open(input_file, 'r', encoding='utf-8') as inf:
         for line in inf:
-            tokens = dictionary.binarize(line.strip(), word_tokenize, append_eos, consumer=unk_consumer)
-            nsent, ntok = nsent + 1, ntok + len(tokens)
+            line = line.strip()
+            tokens = dictionary.binarize(
+                line,
+                tokenizer=tokenize,
+                append_eos=append_eos,
+                consumer=lambda word, idx: unk_counter.update(
+                    [word]) if idx == dictionary.unk_idx and word != dictionary.unk_word else None
+            )
+            nsent += 1
+            ntok += len(tokens)
             tokens_list.append(tokens.numpy())
 
     with open(output_file, 'wb') as outf:
-        pickle.dump(tokens_list, outf, protocol=pickle.DEFAULT_PROTOCOL)
+        pickle.dump(tokens_list, outf, protocol=pickle.HIGHEST_PROTOCOL)
+        if ntok > 0:
+            unk_rate = 100.0 * sum(unk_counter.values()) / ntok
+            logging.info(
+                f'Built a binary dataset for {input_file}: {nsent} sentences, {ntok} tokens, '
+                f'{unk_rate:.3f}% replaced by unknown token.'
+            )
+        else:
+            logging.info(f'Built a binary dataset for {input_file}: 0 sentences, 0 tokens.')
+
+
+def apply_bpe(input_file, output_file, bpe_codes, dropout=0.0, seed=42):
+    """
+    Applies BPE or BPE-dropout to the input file and writes the result to the output file.
+
+    Args:
+        input_file (str): Path to the input text file.
+        output_file (str): Path to save the BPE-processed file.
+        bpe_codes (str): Path to the BPE codes file.
+        dropout (float): Dropout probability for BPE-dropout (0.0 for standard BPE).
+        seed (int): Random seed for reproducibility.
+    """
+    cmd = [
+        'subword-nmt', 'apply-bpe',
+        '--dropout', str(dropout),
+        '--input', input_file,
+        '--output', output_file,
+        '--codes', bpe_codes,
+        '--seed', str(seed)
+    ]
+
+    try:
+        subprocess.run(cmd, check=True)
+        logging.info(f"BPE{'-dropout' if dropout > 0.0 else ''} applied to {input_file}, saved as {output_file}.")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Error applying BPE{'-dropout' if dropout > 0.0 else ''} to {input_file}: {e}")
+        raise
+
+
+def get_args():
+    """Parses and returns command-line arguments."""
+    parser = argparse.ArgumentParser(description='Data Pre-processing with BPE and BPE-Dropout')
+    parser.add_argument('--source-lang', required=True, type=str, help='Source language code (e.g., fr)')
+    parser.add_argument('--target-lang', required=True, type=str, help='Target language code (e.g., en)')
+
+    parser.add_argument('--train-prefix-src', required=True, type=str,
+                        help='Prefix for source training data (e.g., train.fr.txt)')
+    parser.add_argument('--train-prefix-tgt', required=True, type=str,
+                        help='Prefix for target training data (e.g., train.en.txt)')
+    parser.add_argument('--valid-prefix-src', required=True, type=str,
+                        help='Prefix for source validation data (e.g., valid.fr.txt)')
+    parser.add_argument('--valid-prefix-tgt', required=True, type=str,
+                        help='Prefix for target validation data (e.g., valid.en.txt)')
+    parser.add_argument('--test-prefix-src', type=str, default=None,
+                        help='Prefix for source test data (e.g., test.fr.txt)')
+    parser.add_argument('--test-prefix-tgt', type=str, default=None,
+                        help='Prefix for target test data (e.g., test.en.txt)')
+
+    parser.add_argument('--dest-dir', required=True, type=str, help='Destination directory for preprocessed data')
+
+    parser.add_argument('--threshold-src', default=2, type=int,
+                        help='Map words appearing less than this threshold to unknown (source)')
+    parser.add_argument('--num-words-src', default=-1, type=int, help='Maximum number of source words to retain')
+    parser.add_argument('--threshold-tgt', default=2, type=int,
+                        help='Map words appearing less than this threshold to unknown (target)')
+    parser.add_argument('--num-words-tgt', default=-1, type=int, help='Maximum number of target words to retain')
+
+    parser.add_argument('--vocab-src', type=str, default=None, help='Path to existing source dictionary')
+    parser.add_argument('--vocab-trg', type=str, default=None, help='Path to existing target dictionary')
+
+    parser.add_argument('--quiet', action='store_true', help='Suppress logging output')
+
+    parser.add_argument('--bpe_codes', required=True, type=str, help='Path to the BPE codes file')
+    parser.add_argument('--bpe_dropout', type=float, default=0.0,
+                        help='Dropout probability for BPE-dropout (source only)')
+
+    return parser.parse_args()
+
+
+def make_split_datasets(lang, dictionary, is_source, args):
+    """
+    Applies BPE/BPE-dropout and creates binary datasets for a given language.
+
+    Args:
+        lang (str): Language code (e.g., 'fr', 'en').
+        dictionary (Dictionary): Source or target language dictionary.
+        is_source (bool): Whether the language is the source language.
+        args (Namespace): Parsed command-line arguments.
+    """
+    if is_source:
+        train_prefix = args.train_prefix_src
+        valid_prefix = args.valid_prefix_src
+        test_prefix = args.test_prefix_src
+    else:
+        train_prefix = args.train_prefix_tgt
+        valid_prefix = args.valid_prefix_tgt
+        test_prefix = args.test_prefix_tgt
+
+    if train_prefix:
+        input_train = train_prefix  # e.g., train.fr.txt or train.en.txt
+
+        output_train_bpe = f"{input_train}.bpe"
+        dropout = args.bpe_dropout if is_source else 0.0
+        apply_bpe(input_train, output_train_bpe, args.bpe_codes, dropout=dropout, seed=42)
+
+        output_train_bin = os.path.join(args.dest_dir, f'train.{lang}')
+        make_binary_dataset(
+            input_file=output_train_bpe,
+            output_file=output_train_bin,
+            dictionary=dictionary
+        )
+
+    if valid_prefix:
+        input_valid = valid_prefix  # e.g., valid.fr.txt or valid.en.txt
+
+        output_valid_bpe = f"{input_valid}.bpe"
+        dropout = 0.0
+        apply_bpe(input_valid, output_valid_bpe, args.bpe_codes, dropout=dropout, seed=42)
+
+        output_valid_bin = os.path.join(args.dest_dir, f'valid.{lang}')
+        make_binary_dataset(
+            input_file=output_valid_bpe,
+            output_file=output_valid_bin,
+            dictionary=dictionary
+        )
+
+    if test_prefix:
+        input_test = test_prefix  # e.g., test.fr.txt or test.en.txt
+
+        output_test_bpe = f"{input_test}.bpe"
+        dropout = 0.0
+        apply_bpe(input_test, output_test_bpe, args.bpe_codes, dropout=dropout, seed=42)
+
+        output_test_bin = os.path.join(args.dest_dir, f'test.{lang}')
+        make_binary_dataset(
+            input_file=output_test_bpe,
+            output_file=output_test_bin,
+            dictionary=dictionary
+        )
+
+
+def main(args):
+    os.makedirs(args.dest_dir, exist_ok=True)
+
+    # Load or build source dictionary
+    if args.vocab_src and os.path.exists(args.vocab_src):
+        src_dict = Dictionary.load(args.vocab_src)
         if not args.quiet:
-            logging.info('Built a binary dataset for {}: {} sentences, {} tokens, {:.3f}% replaced by unknown token'.format(
-            input_file, nsent, ntok, 100.0 * sum(unk_counter.values()) / ntok, dictionary.unk_word))
+            logging.info(f'Loaded existing source dictionary from {args.vocab_src}')
+    else:
+        # Build and save the source dictionary from source training data
+        src_dict = build_dictionary([args.train_prefix_src])
+        src_dict.save(os.path.join(args.dest_dir, f'dict.{args.source_lang}'))
+        if not args.quiet:
+            logging.info(f'Saved source dictionary to {os.path.join(args.dest_dir, f"dict.{args.source_lang}")}')
+
+    # Load or build target dictionary
+    if args.vocab_trg and os.path.exists(args.vocab_trg):
+        tgt_dict = Dictionary.load(args.vocab_trg)
+        if not args.quiet:
+            logging.info(f'Loaded existing target dictionary from {args.vocab_trg}')
+    else:
+        # Build and save the target dictionary from target training data
+        tgt_dict = build_dictionary([args.train_prefix_tgt])
+        tgt_dict.save(os.path.join(args.dest_dir, f'dict.{args.target_lang}'))
+        if not args.quiet:
+            logging.info(f'Saved target dictionary to {os.path.join(args.dest_dir, f"dict.{args.target_lang}")}')
+
+    # Apply BPE-dropout and create binary datasets for source language
+    make_split_datasets(lang=args.source_lang, dictionary=src_dict, is_source=True, args=args)
+
+    # Apply BPE-dropout and create binary datasets for target language
+    make_split_datasets(lang=args.target_lang, dictionary=tgt_dict, is_source=False, args=args)
+
 
 
 if __name__ == '__main__':
     args = get_args()
+
+    # Set up logging
     if not args.quiet:
-        utils.init_logging(args)
-        logging.info('COMMAND: %s' % ' '.join(sys.argv))
-        logging.info('Arguments: {}'.format(vars(args)))
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.StreamHandler(sys.stdout),
+                logging.FileHandler("preprocess.log", mode='a')
+            ]
+        )
+    else:
+        logging.basicConfig(
+            level=logging.WARNING,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.StreamHandler(sys.stdout)
+            ]
+        )
+
     main(args)

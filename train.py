@@ -1,23 +1,23 @@
-import os
-import logging
 import argparse
-import pickle
-
-import numpy as np
-from tqdm import tqdm
-from collections import OrderedDict
+import collections
+import logging
 import os
-import random
-import re
-from subword_nmt.apply_bpe import BPE
-
-import torch
-import torch.nn as nn
+import sys
+import subprocess
+import pickle
+import gc
 
 from seq2seq import models, utils
 from seq2seq.data.dictionary import Dictionary
 from seq2seq.data.dataset import Seq2SeqDataset, BatchSampler
 from seq2seq.models import ARCH_MODEL_REGISTRY, ARCH_CONFIG_REGISTRY
+
+from torch.utils.data import DataLoader, RandomSampler, BatchSampler
+import torch
+from torch import nn
+from collections import OrderedDict
+from tqdm import tqdm
+
 
 def get_args():
     """ Defines training-specific hyper-parameters. """
@@ -38,8 +38,8 @@ def get_args():
     # Add optimization arguments
     parser.add_argument('--max-epoch', default=10000, type=int, help='force stop training at specified epoch')
     parser.add_argument('--clip-norm', default=4.0, type=float, help='clip threshold of gradients')
-    parser.add_argument('--lr', default=0.0003, type=float, help='learning rate')
-    parser.add_argument('--patience', default=3, type=int,
+    parser.add_argument('--lr', default=0.003, type=float, help='learning rate')
+    parser.add_argument('--patience', default=1, type=int,
                         help='number of epochs without improvement on validation set before early stopping')
 
     # Add checkpoint arguments
@@ -51,7 +51,7 @@ def get_args():
     parser.add_argument('--epoch-checkpoints', action='store_true', help='store all epoch checkpoints')
 
     # Add BPE arguments
-    parser.add_argument('--dropout_prob', type=float, default=0.1, help='Dropout probability for BPE-dropout')
+    parser.add_argument('--dropout_prob', type=float, default=0.2, help='Dropout probability for BPE-dropout')
     parser.add_argument('--bpe_codes', type=str, required=True, help='Path to the BPE codes file')
 
     # Parse twice as model arguments are not known the first time
@@ -63,15 +63,122 @@ def get_args():
     return args
 
 
+def convert_pickled_to_plaintext(pickled_file, dictionary, plaintext_file):
+    """
+    Converts a pickled file containing token IDs to a plaintext file.
+
+    Args:
+        pickled_file (str): Path to the pickled file.
+        dictionary (Dictionary): The dictionary to convert IDs to words.
+        plaintext_file (str): Path to save the plaintext output.
+    """
+    with open(pickled_file, 'rb') as f:
+        try:
+            token_ids_list = pickle.load(f)
+        except Exception as e:
+            logging.error(f"Failed to load pickled file {pickled_file}: {e}")
+            sys.exit(1)
+
+    with open(plaintext_file, 'w', encoding='utf-8') as f_out:
+        for token_ids in token_ids_list:
+            words = dictionary.string(token_ids.tolist())
+            f_out.write(words + '\n')
+
+
+def validate(args, model, criterion, valid_dataset, epoch):
+    """
+    Validates the model on the validation dataset.
+
+    Args:
+        args: Command-line arguments.
+        model: The model to validate.
+        criterion: Loss criterion.
+        valid_dataset: The validation dataset.
+        epoch (int): Current epoch number.
+
+    Returns:
+        float: Validation perplexity.
+    """
+    logging.info(f"Validating at epoch {epoch}...")
+    model.eval()
+    valid_loader = DataLoader(
+        valid_dataset,
+        batch_size=args.batch_size,
+        shuffle=False,
+        collate_fn=valid_dataset.collater,
+        num_workers=1
+    )
+
+    total_loss = 0
+    total_tokens = 0
+
+    with torch.no_grad():
+        for sample in tqdm(valid_loader, desc='Validating', leave=False):
+            if args.cuda:
+                sample = utils.move_to_cuda(sample)
+            if len(sample) == 0:
+                continue
+            output, _ = model(sample['src_tokens'], sample['src_lengths'], sample['tgt_inputs'])
+            loss = criterion(output.view(-1, output.size(-1)), sample['tgt_tokens'].view(-1))
+            total_loss += loss.item()
+            total_tokens += sample['num_tokens']
+
+    perplexity = torch.exp(torch.tensor(total_loss / total_tokens)).item()
+    logging.info(f"Epoch {epoch}: Validation Perplexity: {perplexity:.4f}")
+    return perplexity
+
+
+def load_data(src_file, tgt_file, src_dict, tgt_dict):
+    """Loads a Seq2SeqDataset from source and target binary files."""
+    return Seq2SeqDataset(
+        src_file=src_file,
+        tgt_file=tgt_file,
+        src_dict=src_dict,
+        tgt_dict=tgt_dict
+    )
+
+def preprocess_data(args, epoch_dir, fixed_train_src, fixed_valid_src, fixed_test_src,
+                   fixed_train_tgt, fixed_valid_tgt, fixed_test_tgt,
+                   src_dict_path_existing, tgt_dict_path_existing):
+    """
+    Preprocesses both source and target data by calling preprocess.py once with all required arguments.
+    """
+    preprocess_cmd = [
+        'python', 'preprocess.py',
+        '--source-lang', args.source_lang,
+        '--target-lang', args.target_lang,
+        '--train-prefix-src', fixed_train_src,  # e.g., train.fr.txt
+        '--train-prefix-tgt', fixed_train_tgt,  # e.g., train.en.txt
+        '--valid-prefix-src', fixed_valid_src,  # e.g., valid.fr.txt
+        '--valid-prefix-tgt', fixed_valid_tgt,  # e.g., valid.en.txt
+        '--test-prefix-src', fixed_test_src,    # e.g., test.fr.txt
+        '--test-prefix-tgt', fixed_test_tgt,    # e.g., test.en.txt
+        '--dest-dir', epoch_dir,                # Save to epoch-specific directory
+        '--bpe_codes', args.bpe_codes,
+        '--bpe_dropout', str(args.dropout_prob),  # e.g., 0.2 for source
+        '--vocab-src', src_dict_path_existing,
+        '--vocab-trg', tgt_dict_path_existing,
+        '--quiet',
+    ]
+
+    logging.info("Running preprocessing command:")
+    logging.info(" ".join(preprocess_cmd))
+
+    try:
+        subprocess.run(preprocess_cmd, check=True)
+        logging.info("Preprocessing completed successfully.")
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Preprocessing failed: {e}")
+        sys.exit(1)
+
 def main(args):
-    """ Main training function with online BPE-dropout. """
+    """ Main training function with on-the-fly BPE-dropout. """
 
     logging.info('Commencing training!')
     torch.manual_seed(42)
 
     utils.init_logging(args)
 
-    # Load dictionaries
     src_dict_path = os.path.join(args.data, f'dict.{args.source_lang}')
     tgt_dict_path = os.path.join(args.data, f'dict.{args.target_lang}')
 
@@ -80,23 +187,6 @@ def main(args):
 
     tgt_dict = Dictionary.load(tgt_dict_path)
     logging.info(f'Loaded a target dictionary ({args.target_lang}) with {len(tgt_dict)} words')
-
-    def load_data(src_file, tgt_file):
-        return Seq2SeqDataset(
-            src_file=src_file,
-            tgt_file=tgt_file,
-            src_dict=src_dict,
-            tgt_dict=tgt_dict
-        )
-
-    # Load validation dataset
-    valid_src_pickle = os.path.join(args.data, f'valid.{args.source_lang}')
-    valid_tgt_pickle = os.path.join(args.data, f'valid.{args.target_lang}')
-
-    valid_dataset = load_data(
-        src_file=valid_src_pickle,
-        tgt_file=valid_tgt_pickle
-    )
 
     # Build model and optimization criterion
     model = models.build_model(args, src_dict, tgt_dict)
@@ -119,45 +209,94 @@ def main(args):
     bad_epochs = 0
     best_validate = float('inf')
 
-    # Path to the BPE codes file
-    bpe_codes_file = args.bpe_codes
+    # Define directories
+    base_dir = args.data  # e.g., data/en-fr/prepared/
+    prepared_dir = os.path.join(base_dir, "prepared")  # e.g., data/en-fr/prepared/prepared/
+    os.makedirs(prepared_dir, exist_ok=True)
+
+    # Define fixed plaintext file paths
+    fixed_train_src = os.path.join(base_dir, f'train.{args.source_lang}.txt')
+    fixed_train_tgt = os.path.join(base_dir, f'train.{args.target_lang}.txt')
+    fixed_valid_src = os.path.join(base_dir, f'valid.{args.source_lang}.txt')
+    fixed_valid_tgt = os.path.join(base_dir, f'valid.{args.target_lang}.txt')
+    fixed_test_src = os.path.join(base_dir, f'test.{args.source_lang}.txt')
+    fixed_test_tgt = os.path.join(base_dir, f'test.{args.target_lang}.txt')
 
     for epoch in range(last_epoch + 1, args.max_epoch):
         logging.info(f"Starting epoch {epoch}")
 
-        # Before each epoch, re-segment the training data with BPE-dropout
-        src_file_original = os.path.join(args.data, f'train.{args.source_lang}')
-        tgt_file_original = os.path.join(args.data, f'train.{args.target_lang}')
+        epoch_dir = os.path.join(prepared_dir, f'epoch_{epoch}')
+        os.makedirs(epoch_dir, exist_ok=True)
 
-        prepared_dir = os.path.join(args.data, "prepared")
-        os.makedirs(prepared_dir, exist_ok=True)
+        if epoch == 0:
+            # Convert pickled files to fixed plaintext files
+            pickled_train_src = os.path.join(base_dir, f'train.{args.source_lang}')
+            pickled_train_tgt = os.path.join(base_dir, f'train.{args.target_lang}')
+            pickled_valid_src = os.path.join(base_dir, f'valid.{args.source_lang}')
+            pickled_valid_tgt = os.path.join(base_dir, f'valid.{args.target_lang}')
 
-        src_file_bpe = os.path.join(prepared_dir, f'train.bpedropout.{args.source_lang}.epoch{epoch}')
-        tgt_file_bpe = os.path.join(prepared_dir, f'train.bpedropout.{args.target_lang}.epoch{epoch}')
+            logging.info(f"Converting pickled source training data: {pickled_train_src} to {fixed_train_src}")
+            convert_pickled_to_plaintext(pickled_train_src, src_dict, fixed_train_src)
+            logging.info(f"Converting pickled target training data: {pickled_train_tgt} to {fixed_train_tgt}")
+            convert_pickled_to_plaintext(pickled_train_tgt, tgt_dict, fixed_train_tgt)
 
-        logging.info("Applying BPE-dropout to training data...")
-        resegment_data(
-            src_file=src_file_original,
-            tgt_file=tgt_file_original,
-            output_src_file=src_file_bpe,
-            output_tgt_file=tgt_file_bpe,
-            dropout_prob=args.dropout_prob,
-            bpe_codes_file=bpe_codes_file,
-            src_dict=src_dict,  # Pass source dictionary
-            tgt_dict=tgt_dict,  # Pass target dictionary
-            seed=42 + epoch  # Different seed per epoch for variability
+            logging.info(f"Converting pickled source validation data: {pickled_valid_src} to {fixed_valid_src}")
+            convert_pickled_to_plaintext(pickled_valid_src, src_dict, fixed_valid_src)
+            logging.info(f"Converting pickled target validation data: {pickled_valid_tgt} to {fixed_valid_tgt}")
+            convert_pickled_to_plaintext(pickled_valid_tgt, tgt_dict, fixed_valid_tgt)
+        else:
+            logging.info(f"Epoch {epoch}: Skipping pickled to plaintext conversion as plaintext files already exist.")
+
+        # Define paths to existing dictionaries
+        src_dict_path_existing = src_dict_path  # dict.fr
+        tgt_dict_path_existing = tgt_dict_path  # dict.en
+
+        # Execute Preprocessing Commands
+        preprocess_data(
+            args=args,
+            epoch_dir=epoch_dir,
+            fixed_train_src=fixed_train_src,  # e.g., 'data/en-fr/prepared/train.fr.txt'
+            fixed_valid_src=fixed_valid_src,  # e.g., 'data/en-fr/prepared/valid.fr.txt'
+            fixed_test_src=fixed_test_src,  # e.g., 'data/en-fr/prepared/test.fr.txt'
+            fixed_train_tgt=fixed_train_tgt,  # e.g., 'data/en-fr/prepared/train.en.txt'
+            fixed_valid_tgt=fixed_valid_tgt,  # e.g., 'data/en-fr/prepared/valid.en.txt'
+            fixed_test_tgt=fixed_test_tgt,  # e.g., 'data/en-fr/prepared/test.en.txt'
+            src_dict_path_existing=src_dict_path_existing,  # Path to existing source dictionary
+            tgt_dict_path_existing=tgt_dict_path_existing  # Path to existing target dictionary
         )
-        logging.info("BPE-dropout applied.")
 
-        # Reload the training dataset with re-segmented data
-        train_dataset = load_data(src_file=src_file_bpe, tgt_file=tgt_file_bpe)
+        # Define paths to the new preprocessed binary files after preprocessing
+        src_file_bpe = os.path.join(epoch_dir, f'train.{args.source_lang}')
+        tgt_file_bpe = os.path.join(epoch_dir, f'train.{args.target_lang}')
+        valid_src_bpe = os.path.join(epoch_dir, f'valid.{args.source_lang}')
+        valid_tgt_bpe = os.path.join(epoch_dir, f'valid.{args.target_lang}')
 
-        train_loader = torch.utils.data.DataLoader(
+        # Validate preprocessed files
+        missing_files = []
+        for file in [src_file_bpe, tgt_file_bpe, valid_src_bpe, valid_tgt_bpe]:
+            if not os.path.exists(file):
+                missing_files.append(file)
+        if missing_files:
+            logging.error(f"Preprocessing failed: Output files not found: {missing_files}")
+            sys.exit(1)
+
+        # Load the new training dataset
+        logging.info(f"Loading preprocessed training data: {src_file_bpe}, {tgt_file_bpe}")
+        train_dataset = load_data(src_file=src_file_bpe, tgt_file=tgt_file_bpe, src_dict=src_dict, tgt_dict=tgt_dict)
+
+        # Load the new validation dataset
+        logging.info(f"Loading preprocessed validation data: {valid_src_bpe}, {valid_tgt_bpe}")
+        valid_dataset = load_data(src_file=valid_src_bpe, tgt_file=valid_tgt_bpe, src_dict=src_dict, tgt_dict=tgt_dict)
+
+        # Initialize DataLoader
+        train_loader = DataLoader(
             train_dataset,
             num_workers=1,
             collate_fn=train_dataset.collater,
             batch_sampler=BatchSampler(
-                train_dataset, args.max_tokens, args.batch_size, 1, 0, shuffle=False, seed=42
+                RandomSampler(train_dataset, generator=torch.Generator().manual_seed(42)),
+                batch_size=args.batch_size,
+                drop_last=False
             )
         )
 
@@ -188,13 +327,14 @@ def main(args):
 
             if torch.isnan(loss).any():
                 logging.warning('Loss is NAN!')
-                print(src_dict.string(sample['src_tokens'].tolist()[0]), '---',
-                      tgt_dict.string(sample['tgt_tokens'].tolist()[0]))
+                logging.warning(f"Source: {src_dict.string(sample['src_tokens'].tolist()[0])}")
+                logging.warning(f"Target: {tgt_dict.string(sample['tgt_tokens'].tolist()[0])}")
 
+            optimizer.zero_grad()
             loss.backward()
             grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip_norm)
             optimizer.step()
-            optimizer.zero_grad()
+
 
             # Update statistics for progress bar
             total_loss = loss.item()
@@ -219,7 +359,7 @@ def main(args):
         model.train()
 
         # Save checkpoints
-        if epoch % args.save_interval == 0:
+        if epoch % args.save_interval == 0 and not args.no_save:
             utils.save_checkpoint(args, model, optimizer, epoch, valid_perplexity)
 
         # Check whether to terminate training
@@ -233,163 +373,20 @@ def main(args):
             break
 
 
-def resegment_data(src_file, tgt_file, output_src_file, output_tgt_file, dropout_prob, bpe_codes_file, src_dict, tgt_dict, seed=42):
-    assert 0.0 <= dropout_prob < 1.0, "dropout_prob must be in the range [0.0, 1.0)."
-
-    if not logging.getLogger().hasHandlers():
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-    random.seed(seed)
-
-    # Initialize BPE with dropout
-    try:
-        with open(bpe_codes_file, 'r', encoding='utf-8') as bpe_codes:
-            bpe = BPE(bpe_codes, vocab=None, glossaries=None)
-        logging.info("BPE initialized successfully.")
-    except Exception as e:
-        logging.error(f"Failed to initialize BPE: {e}")
-        raise
-
-    def apply_bpe_dropout(line_array, dictionary):
-        if not isinstance(line_array, np.ndarray):
-            raise TypeError(f"Expected line_array to be a NumPy array, but got {type(line_array)}")
-
-        sentence = dictionary.string(line_array.tolist())
-
-        # Apply BPE with dropout
-        bpe_line = bpe.process_line(sentence.strip())
-
-        # Re-encode the processed string back to token IDs
-        tokens = dictionary.binarize(bpe_line, tokenizer=lambda x: x.split(), append_eos=True)
-
-        # Convert tokens to NumPy array
-        processed_tokens = tokens.numpy()
-
-        return processed_tokens
-
-    # Process Source File
-    logging.info(f"Processing source file: {src_file}")
-    try:
-        with open(src_file, 'rb') as src_in:
-            src_data = pickle.load(src_in)
-            if not isinstance(src_data, list):
-                raise TypeError(f"Expected source pickle to contain a list, but got {type(src_data)}")
-        logging.info(f"Loaded {len(src_data)} lines from source pickle.")
-    except Exception as e:
-        logging.error(f"Error loading source pickle file: {e}")
-        raise
-
-    src_processed = []
-    for idx, line in enumerate(src_data):
-        try:
-            bpe_line = apply_bpe_dropout(line, src_dict)
-            src_processed.append(bpe_line)
-            if (idx + 1) % 10000 == 0:
-                logging.info(f"Processed {idx + 1} source lines.")
-        except Exception as e:
-            logging.warning(f"Error processing source line {idx}: {e}")
-            src_processed.append(np.array([src_dict.unk_idx], dtype=np.int32))
-
-    temp_src_out = output_src_file + '.tmp'
-    try:
-        with open(temp_src_out, 'wb') as src_out:
-            pickle.dump(src_processed, src_out, protocol=pickle.HIGHEST_PROTOCOL)
-        os.rename(temp_src_out, output_src_file)
-        logging.info(f"Saved processed source data to {output_src_file}.")
-    except Exception as e:
-        logging.error(f"Error saving processed source pickle file: {e}")
-        if os.path.exists(temp_src_out):
-            os.remove(temp_src_out)
-        raise
-
-    # Process Target File
-    logging.info(f"Processing target file: {tgt_file}")
-    try:
-        with open(tgt_file, 'rb') as tgt_in:
-            tgt_data = pickle.load(tgt_in)
-            if not isinstance(tgt_data, list):
-                raise TypeError(f"Expected target pickle to contain a list, but got {type(tgt_data)}")
-        logging.info(f"Loaded {len(tgt_data)} lines from target pickle.")
-    except Exception as e:
-        logging.error(f"Error loading target pickle file: {e}")
-        raise
-
-    tgt_processed = []
-    for idx, line in enumerate(tgt_data):
-        try:
-            bpe_line = apply_bpe_dropout(line, tgt_dict)
-            tgt_processed.append(bpe_line)
-            if (idx + 1) % 10000 == 0:
-                logging.info(f"Processed {idx + 1} target lines.")
-        except Exception as e:
-            logging.warning(f"Error processing target line {idx}: {e}")
-            tgt_processed.append(np.array([tgt_dict.unk_idx], dtype=np.int32))
-
-    temp_tgt_out = output_tgt_file + '.tmp'
-    try:
-        with open(temp_tgt_out, 'wb') as tgt_out:
-            pickle.dump(tgt_processed, tgt_out, protocol=pickle.HIGHEST_PROTOCOL)
-        os.rename(temp_tgt_out, output_tgt_file)
-        logging.info(f"Saved processed target data to {output_tgt_file}.")
-    except Exception as e:
-        logging.error(f"Error saving processed target pickle file: {e}")
-        if os.path.exists(temp_tgt_out):
-            os.remove(temp_tgt_out)
-        raise
-
-    logging.info("BPE-dropout re-segmentation completed successfully.")
-
-
-def validate(args, model, criterion, valid_dataset, epoch):
-    """ Validates model performance on a held-out development set. """
-    valid_loader = \
-        torch.utils.data.DataLoader(valid_dataset, num_workers=1, collate_fn=valid_dataset.collater,
-                                    batch_sampler=BatchSampler(valid_dataset, args.max_tokens, args.batch_size, 1, 0,
-                                                               shuffle=False, seed=42))
-    model.eval()
-    stats = OrderedDict()
-    stats['valid_loss'] = 0
-    stats['num_tokens'] = 0
-    stats['batch_size'] = 0
-
-    # Iterate over the validation set
-    for i, sample in enumerate(valid_loader):
-        if args.cuda:
-            sample = utils.move_to_cuda(sample)
-        if len(sample) == 0:
-            continue
-        with torch.no_grad():
-            # Compute loss
-            output, attn_scores = model(sample['src_tokens'], sample['src_lengths'], sample['tgt_inputs'])
-            loss = criterion(output.view(-1, output.size(-1)), sample['tgt_tokens'].view(-1))
-        # Update tracked statistics
-        stats['valid_loss'] += loss.item()
-        stats['num_tokens'] += sample['num_tokens']
-        stats['batch_size'] += len(sample['src_tokens'])
-
-    # Calculate validation perplexity
-    stats['valid_loss'] = stats['valid_loss'] / stats['num_tokens']
-    perplexity = np.exp(stats['valid_loss'])
-    stats['num_tokens'] = stats['num_tokens'] / stats['batch_size']
-
-    logging.info(
-        'Epoch {:03d}: {}'.format(epoch, ' | '.join(key + ' {:.3g}'.format(value) for key, value in stats.items())) +
-        ' | valid_perplexity {:.3g}'.format(perplexity))
-
-    return perplexity
-
-
 if __name__ == '__main__':
+    torch.cuda.reset_max_memory_allocated()
+    torch.cuda.reset_peak_memory_stats()
+    gc.collect()
+    torch.cuda.empty_cache()
+    print(torch.cuda.memory_summary(device=None, abbreviated=False))
     args = get_args()
-    args.device_id = 0
 
-    # Set up logging to file
-    logging.basicConfig(filename=args.log_file, filemode='a', level=logging.INFO,
-                        format='%(levelname)s: %(message)s')
-    if args.log_file is not None:
-        # Logging to console
-        console = logging.StreamHandler()
-        console.setLevel(logging.INFO)
-        logging.getLogger('').addHandler(console)
-
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler("train.log", mode='a')
+        ]
+    )
     main(args)

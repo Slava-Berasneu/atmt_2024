@@ -29,46 +29,26 @@ def build_dictionary(filenames, tokenize=word_tokenize):
     return dictionary
 
 
-def make_binary_dataset(input_file, output_file, dictionary, tokenize=lambda x: x.split(),
-                        append_eos=True):
-    """
-    Converts tokenized text into binary format using the provided dictionary.
-
-    Args:
-        input_file (str): Path to the tokenized input text file.
-        output_file (str): Path to save the binary dataset.
-        dictionary (Dictionary): Source or target language dictionary.
-        tokenize (callable): Function to tokenize each line.
-        append_eos (bool): Whether to append an end-of-sentence token.
-    """
+def make_binary_dataset(input_file, output_file, dictionary, tokenize=word_tokenize, append_eos=True):
     nsent, ntok = 0, 0
     unk_counter = collections.Counter()
 
+    def unk_consumer(word, idx):
+        if idx == dictionary.unk_idx and word != dictionary.unk_word:
+            unk_counter.update([word])
+
     tokens_list = []
-    with open(input_file, 'r', encoding='utf-8') as inf:
+    with open(input_file, 'r') as inf:
         for line in inf:
-            line = line.strip()
-            tokens = dictionary.binarize(
-                line,
-                tokenizer=tokenize,
-                append_eos=append_eos,
-                consumer=lambda word, idx: unk_counter.update(
-                    [word]) if idx == dictionary.unk_idx and word != dictionary.unk_word else None
-            )
-            nsent += 1
-            ntok += len(tokens)
+            tokens = dictionary.binarize(line.strip(), word_tokenize, append_eos, consumer=unk_consumer)
+            nsent, ntok = nsent + 1, ntok + len(tokens)
             tokens_list.append(tokens.numpy())
 
     with open(output_file, 'wb') as outf:
-        pickle.dump(tokens_list, outf, protocol=pickle.HIGHEST_PROTOCOL)
-        if ntok > 0:
-            unk_rate = 100.0 * sum(unk_counter.values()) / ntok
-            logging.info(
-                f'Built a binary dataset for {input_file}: {nsent} sentences, {ntok} tokens, '
-                f'{unk_rate:.3f}% replaced by unknown token.'
-            )
-        else:
-            logging.info(f'Built a binary dataset for {input_file}: 0 sentences, 0 tokens.')
+        pickle.dump(tokens_list, outf, protocol=pickle.DEFAULT_PROTOCOL)
+        if not args.quiet:
+            logging.info('Built a binary dataset for {}: {} sentences, {} tokens, {:.3f}% replaced by unknown token'.format(
+            input_file, nsent, ntok, 100.0 * sum(unk_counter.values()) / ntok, dictionary.unk_word))
 
 
 def apply_bpe(input_file, output_file, bpe_codes, dropout=0.0, seed=42):

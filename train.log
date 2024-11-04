@@ -4192,3 +4192,908 @@
 2024-11-04 03:14:52,488 - INFO - Commencing training!
 2024-11-04 03:14:52,489 - INFO - COMMAND: train.py --data data/en-fr/prepared --source-lang fr --target-lang en --save-dir assignments/03/bpe/checkpoints --bpe_codes bpe.codes --dropout_prob 0.2
 2024-11-04 03:14:52,489 - INFO - Arguments: {'cuda': False, 'data': 'data/en-fr/prepared', 'source_lang': 'fr', 'target_lang': 'en', 'max_tokens': None, 'batch_size': 1, 'train_on_tiny': False, 'arch': 'lstm', 'max_epoch': 10000, 'clip_norm': 4.0, 'lr': 0.003, 'patience': 1, 'log_file': None, 'save_dir': 'assignments/03/bpe/checkpoints', 'restore_file': 'checkpoint_last.pt', 'save_interval': 1, 'no_save': False, 'epoch_checkpoints': False, 'dropout_prob': 0.2, 'bpe_codes': 'bpe.codes', 'encoder_embed_dim': 64, 'encoder_embed_path': None, 'encoder_hidden_size': 64, 'encoder_num_layers': 1, 'encoder_bidirectional': 'True', 'encoder_dropout_in': 0.25, 'encoder_dropout_out': 0.25, 'decoder_embed_dim': 64, 'decoder_embed_path': None, 'decoder_hidden_size': 128, 'decoder_num_layers': 1, 'decoder_dropout_in': 0.25, 'decoder_dropout_out': 0.25, 'decoder_use_attention': 'True', 'decoder_use_lexical_model': 'False'}
+2024-11-04 03:47:58,105 - INFO - Commencing training!
+2024-11-04 03:47:58,106 - INFO - COMMAND: train.py --data data/en-fr/prepared --source-lang fr --target-lang en --save-dir assignments/03/bpe/checkpoints --bpe_codes bpe.codes --dropout_prob 0.2
+2024-11-04 03:47:58,106 - INFO - Arguments: {'cuda': False, 'data': 'data/en-fr/prepared', 'source_lang': 'fr', 'target_lang': 'en', 'max_tokens': None, 'batch_size': 1, 'train_on_tiny': False, 'arch': 'lstm', 'max_epoch': 10000, 'clip_norm': 4.0, 'lr': 0.0003, 'patience': 3, 'log_file': None, 'save_dir': 'assignments/03/bpe/checkpoints', 'restore_file': 'checkpoint_last.pt', 'save_interval': 1, 'no_save': False, 'epoch_checkpoints': False, 'dropout_prob': 0.2, 'bpe_codes': 'bpe.codes', 'encoder_embed_dim': 64, 'encoder_embed_path': None, 'encoder_hidden_size': 64, 'encoder_num_layers': 1, 'encoder_bidirectional': 'True', 'encoder_dropout_in': 0.25, 'encoder_dropout_out': 0.25, 'decoder_embed_dim': 64, 'decoder_embed_path': None, 'decoder_hidden_size': 128, 'decoder_num_layers': 1, 'decoder_dropout_in': 0.25, 'decoder_dropout_out': 0.25, 'decoder_use_attention': 'True', 'decoder_use_lexical_model': 'False'}
+2024-11-04 03:47:58,110 - INFO - Loaded a source dictionary (fr) with 8248 words
+2024-11-04 03:47:58,113 - INFO - Loaded a target dictionary (en) with 6212 words
+2024-11-04 03:47:58,121 - INFO - Built a model with 2007364 parameters
+2024-11-04 03:47:58,835 - INFO - Starting epoch 0
+2024-11-04 03:47:58,835 - INFO - Running preprocessing command:
+2024-11-04 03:47:58,835 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_0 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 03:48:03,906 - INFO - Preprocessing completed successfully.
+2024-11-04 03:48:03,906 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_0\train.fr, data/en-fr/prepared\prepared\epoch_0\train.en
+2024-11-04 03:48:03,968 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_0\valid.fr, data/en-fr/prepared\prepared\epoch_0\valid.en
+2024-11-04 03:52:08,625 - INFO - Epoch 000: loss 4.39 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 31.14 | clip 1
+2024-11-04 03:52:08,625 - INFO - Validating at epoch 0...
+2024-11-04 03:52:12,367 - INFO - Epoch 0: Validation Perplexity: 44.3643
+2024-11-04 03:52:12,400 - INFO - Starting epoch 1
+2024-11-04 03:52:12,400 - INFO - Running preprocessing command:
+2024-11-04 03:52:12,400 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_1 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 03:52:17,501 - INFO - Preprocessing completed successfully.
+2024-11-04 03:52:17,502 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_1\train.fr, data/en-fr/prepared\prepared\epoch_1\train.en
+2024-11-04 03:52:17,571 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_1\valid.fr, data/en-fr/prepared\prepared\epoch_1\valid.en
+2024-11-04 03:57:26,665 - INFO - Epoch 001: loss 3.761 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 33.71 | clip 1
+2024-11-04 03:57:26,665 - INFO - Validating at epoch 1...
+2024-11-04 03:57:30,486 - INFO - Epoch 1: Validation Perplexity: 33.8829
+2024-11-04 03:57:30,520 - INFO - Starting epoch 2
+2024-11-04 03:57:30,521 - INFO - Running preprocessing command:
+2024-11-04 03:57:30,521 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_2 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 03:57:35,690 - INFO - Preprocessing completed successfully.
+2024-11-04 03:57:35,691 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_2\train.fr, data/en-fr/prepared\prepared\epoch_2\train.en
+2024-11-04 03:57:35,710 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_2\valid.fr, data/en-fr/prepared\prepared\epoch_2\valid.en
+2024-11-04 04:04:42,758 - INFO - Epoch 002: loss 3.552 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 35.56 | clip 1
+2024-11-04 04:04:42,758 - INFO - Validating at epoch 2...
+2024-11-04 04:04:48,458 - INFO - Epoch 2: Validation Perplexity: 28.6295
+2024-11-04 04:04:48,493 - INFO - Starting epoch 3
+2024-11-04 04:04:48,493 - INFO - Running preprocessing command:
+2024-11-04 04:04:48,493 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_3 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:04:53,703 - INFO - Preprocessing completed successfully.
+2024-11-04 04:04:53,704 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_3\train.fr, data/en-fr/prepared\prepared\epoch_3\train.en
+2024-11-04 04:04:53,819 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_3\valid.fr, data/en-fr/prepared\prepared\epoch_3\valid.en
+2024-11-04 04:12:23,563 - INFO - Epoch 003: loss 3.414 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 36.94 | clip 1
+2024-11-04 04:12:23,564 - INFO - Validating at epoch 3...
+2024-11-04 04:12:27,485 - INFO - Epoch 3: Validation Perplexity: 25.1389
+2024-11-04 04:12:27,521 - INFO - Starting epoch 4
+2024-11-04 04:12:27,521 - INFO - Running preprocessing command:
+2024-11-04 04:12:27,522 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_4 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:12:32,694 - INFO - Preprocessing completed successfully.
+2024-11-04 04:12:32,694 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_4\train.fr, data/en-fr/prepared\prepared\epoch_4\train.en
+2024-11-04 04:12:32,765 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_4\valid.fr, data/en-fr/prepared\prepared\epoch_4\valid.en
+2024-11-04 04:20:03,906 - INFO - Epoch 004: loss 3.31 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 37.98 | clip 1
+2024-11-04 04:20:03,906 - INFO - Validating at epoch 4...
+2024-11-04 04:20:07,715 - INFO - Epoch 4: Validation Perplexity: 23.4297
+2024-11-04 04:20:07,752 - INFO - Starting epoch 5
+2024-11-04 04:20:07,752 - INFO - Running preprocessing command:
+2024-11-04 04:20:07,752 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_5 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:20:12,934 - INFO - Preprocessing completed successfully.
+2024-11-04 04:20:12,934 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_5\train.fr, data/en-fr/prepared\prepared\epoch_5\train.en
+2024-11-04 04:20:12,954 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_5\valid.fr, data/en-fr/prepared\prepared\epoch_5\valid.en
+2024-11-04 04:26:04,982 - INFO - Epoch 005: loss 3.219 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 38.89 | clip 1
+2024-11-04 04:26:04,983 - INFO - Validating at epoch 5...
+2024-11-04 04:26:11,418 - INFO - Epoch 5: Validation Perplexity: 21.5499
+2024-11-04 04:26:11,460 - INFO - Starting epoch 6
+2024-11-04 04:26:11,461 - INFO - Running preprocessing command:
+2024-11-04 04:26:11,461 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_6 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:26:17,436 - INFO - Preprocessing completed successfully.
+2024-11-04 04:26:17,436 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_6\train.fr, data/en-fr/prepared\prepared\epoch_6\train.en
+2024-11-04 04:26:17,514 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_6\valid.fr, data/en-fr/prepared\prepared\epoch_6\valid.en
+2024-11-04 04:35:09,699 - INFO - Epoch 006: loss 3.158 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 39.54 | clip 1
+2024-11-04 04:35:09,699 - INFO - Validating at epoch 6...
+2024-11-04 04:35:13,416 - INFO - Epoch 6: Validation Perplexity: 20.8546
+2024-11-04 04:35:13,451 - INFO - Starting epoch 7
+2024-11-04 04:35:13,452 - INFO - Running preprocessing command:
+2024-11-04 04:35:13,452 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_7 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:35:18,493 - INFO - Preprocessing completed successfully.
+2024-11-04 04:35:18,493 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_7\train.fr, data/en-fr/prepared\prepared\epoch_7\train.en
+2024-11-04 04:35:18,512 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_7\valid.fr, data/en-fr/prepared\prepared\epoch_7\valid.en
+2024-11-04 04:39:14,151 - INFO - Epoch 007: loss 3.097 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 40.22 | clip 1
+2024-11-04 04:39:14,151 - INFO - Validating at epoch 7...
+2024-11-04 04:39:17,889 - INFO - Epoch 7: Validation Perplexity: 19.4626
+2024-11-04 04:39:17,921 - INFO - Starting epoch 8
+2024-11-04 04:39:17,922 - INFO - Running preprocessing command:
+2024-11-04 04:39:17,922 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_8 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:39:22,982 - INFO - Preprocessing completed successfully.
+2024-11-04 04:39:22,982 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_8\train.fr, data/en-fr/prepared\prepared\epoch_8\train.en
+2024-11-04 04:39:23,049 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_8\valid.fr, data/en-fr/prepared\prepared\epoch_8\valid.en
+2024-11-04 04:43:21,468 - INFO - Epoch 008: loss 3.038 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 40.7 | clip 1
+2024-11-04 04:43:21,468 - INFO - Validating at epoch 8...
+2024-11-04 04:43:25,176 - INFO - Epoch 8: Validation Perplexity: 18.8550
+2024-11-04 04:43:25,210 - INFO - Starting epoch 9
+2024-11-04 04:43:25,210 - INFO - Running preprocessing command:
+2024-11-04 04:43:25,210 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_9 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:43:30,262 - INFO - Preprocessing completed successfully.
+2024-11-04 04:43:30,262 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_9\train.fr, data/en-fr/prepared\prepared\epoch_9\train.en
+2024-11-04 04:43:30,325 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_9\valid.fr, data/en-fr/prepared\prepared\epoch_9\valid.en
+2024-11-04 04:47:24,990 - INFO - Epoch 009: loss 2.993 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 41.21 | clip 1
+2024-11-04 04:47:24,990 - INFO - Validating at epoch 9...
+2024-11-04 04:47:28,691 - INFO - Epoch 9: Validation Perplexity: 17.9557
+2024-11-04 04:47:28,724 - INFO - Starting epoch 10
+2024-11-04 04:47:28,724 - INFO - Running preprocessing command:
+2024-11-04 04:47:28,724 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_10 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:47:33,733 - INFO - Preprocessing completed successfully.
+2024-11-04 04:47:33,734 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_10\train.fr, data/en-fr/prepared\prepared\epoch_10\train.en
+2024-11-04 04:47:33,750 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_10\valid.fr, data/en-fr/prepared\prepared\epoch_10\valid.en
+2024-11-04 04:51:30,954 - INFO - Epoch 010: loss 2.952 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 41.56 | clip 1
+2024-11-04 04:51:30,954 - INFO - Validating at epoch 10...
+2024-11-04 04:51:34,627 - INFO - Epoch 10: Validation Perplexity: 17.1630
+2024-11-04 04:51:34,659 - INFO - Starting epoch 11
+2024-11-04 04:51:34,659 - INFO - Running preprocessing command:
+2024-11-04 04:51:34,659 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_11 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:51:39,648 - INFO - Preprocessing completed successfully.
+2024-11-04 04:51:39,648 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_11\train.fr, data/en-fr/prepared\prepared\epoch_11\train.en
+2024-11-04 04:51:39,713 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_11\valid.fr, data/en-fr/prepared\prepared\epoch_11\valid.en
+2024-11-04 04:55:33,216 - INFO - Epoch 011: loss 2.907 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 41.63 | clip 1
+2024-11-04 04:55:33,216 - INFO - Validating at epoch 11...
+2024-11-04 04:55:36,966 - INFO - Epoch 11: Validation Perplexity: 16.9451
+2024-11-04 04:55:36,998 - INFO - Starting epoch 12
+2024-11-04 04:55:36,999 - INFO - Running preprocessing command:
+2024-11-04 04:55:36,999 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_12 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:55:41,985 - INFO - Preprocessing completed successfully.
+2024-11-04 04:55:41,986 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_12\train.fr, data/en-fr/prepared\prepared\epoch_12\train.en
+2024-11-04 04:55:42,003 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_12\valid.fr, data/en-fr/prepared\prepared\epoch_12\valid.en
+2024-11-04 04:59:34,471 - INFO - Epoch 012: loss 2.868 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 41.89 | clip 1
+2024-11-04 04:59:34,472 - INFO - Validating at epoch 12...
+2024-11-04 04:59:38,213 - INFO - Epoch 12: Validation Perplexity: 16.4216
+2024-11-04 04:59:38,244 - INFO - Starting epoch 13
+2024-11-04 04:59:38,245 - INFO - Running preprocessing command:
+2024-11-04 04:59:38,245 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_13 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 04:59:43,239 - INFO - Preprocessing completed successfully.
+2024-11-04 04:59:43,239 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_13\train.fr, data/en-fr/prepared\prepared\epoch_13\train.en
+2024-11-04 04:59:43,257 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_13\valid.fr, data/en-fr/prepared\prepared\epoch_13\valid.en
+2024-11-04 05:03:35,345 - INFO - Epoch 013: loss 2.833 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.16 | clip 1
+2024-11-04 05:03:35,345 - INFO - Validating at epoch 13...
+2024-11-04 05:03:39,033 - INFO - Epoch 13: Validation Perplexity: 15.7457
+2024-11-04 05:03:39,067 - INFO - Starting epoch 14
+2024-11-04 05:03:39,068 - INFO - Running preprocessing command:
+2024-11-04 05:03:39,068 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_14 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:03:44,073 - INFO - Preprocessing completed successfully.
+2024-11-04 05:03:44,074 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_14\train.fr, data/en-fr/prepared\prepared\epoch_14\train.en
+2024-11-04 05:03:44,133 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_14\valid.fr, data/en-fr/prepared\prepared\epoch_14\valid.en
+2024-11-04 05:07:36,475 - INFO - Epoch 014: loss 2.798 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.48 | clip 1
+2024-11-04 05:07:36,476 - INFO - Validating at epoch 14...
+2024-11-04 05:07:40,150 - INFO - Epoch 14: Validation Perplexity: 15.4040
+2024-11-04 05:07:40,183 - INFO - Starting epoch 15
+2024-11-04 05:07:40,184 - INFO - Running preprocessing command:
+2024-11-04 05:07:40,184 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_15 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:07:45,178 - INFO - Preprocessing completed successfully.
+2024-11-04 05:07:45,179 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_15\train.fr, data/en-fr/prepared\prepared\epoch_15\train.en
+2024-11-04 05:07:45,196 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_15\valid.fr, data/en-fr/prepared\prepared\epoch_15\valid.en
+2024-11-04 05:11:38,747 - INFO - Epoch 015: loss 2.769 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.59 | clip 1
+2024-11-04 05:11:38,747 - INFO - Validating at epoch 15...
+2024-11-04 05:11:42,447 - INFO - Epoch 15: Validation Perplexity: 14.8268
+2024-11-04 05:11:42,479 - INFO - Starting epoch 16
+2024-11-04 05:11:42,479 - INFO - Running preprocessing command:
+2024-11-04 05:11:42,480 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_16 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:11:47,472 - INFO - Preprocessing completed successfully.
+2024-11-04 05:11:47,473 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_16\train.fr, data/en-fr/prepared\prepared\epoch_16\train.en
+2024-11-04 05:11:47,490 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_16\valid.fr, data/en-fr/prepared\prepared\epoch_16\valid.en
+2024-11-04 05:15:39,916 - INFO - Epoch 016: loss 2.743 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.61 | clip 1
+2024-11-04 05:15:39,916 - INFO - Validating at epoch 16...
+2024-11-04 05:15:43,624 - INFO - Epoch 16: Validation Perplexity: 14.9062
+2024-11-04 05:15:43,641 - INFO - Starting epoch 17
+2024-11-04 05:15:43,641 - INFO - Running preprocessing command:
+2024-11-04 05:15:43,641 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_17 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:15:48,636 - INFO - Preprocessing completed successfully.
+2024-11-04 05:15:48,637 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_17\train.fr, data/en-fr/prepared\prepared\epoch_17\train.en
+2024-11-04 05:15:48,695 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_17\valid.fr, data/en-fr/prepared\prepared\epoch_17\valid.en
+2024-11-04 05:19:40,415 - INFO - Epoch 017: loss 2.718 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.76 | clip 1
+2024-11-04 05:19:40,415 - INFO - Validating at epoch 17...
+2024-11-04 05:19:44,115 - INFO - Epoch 17: Validation Perplexity: 14.4479
+2024-11-04 05:19:44,147 - INFO - Starting epoch 18
+2024-11-04 05:19:44,148 - INFO - Running preprocessing command:
+2024-11-04 05:19:44,148 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_18 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:19:49,158 - INFO - Preprocessing completed successfully.
+2024-11-04 05:19:49,158 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_18\train.fr, data/en-fr/prepared\prepared\epoch_18\train.en
+2024-11-04 05:19:49,175 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_18\valid.fr, data/en-fr/prepared\prepared\epoch_18\valid.en
+2024-11-04 05:23:41,618 - INFO - Epoch 018: loss 2.688 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.73 | clip 1
+2024-11-04 05:23:41,618 - INFO - Validating at epoch 18...
+2024-11-04 05:23:45,388 - INFO - Epoch 18: Validation Perplexity: 13.9593
+2024-11-04 05:23:45,420 - INFO - Starting epoch 19
+2024-11-04 05:23:45,421 - INFO - Running preprocessing command:
+2024-11-04 05:23:45,421 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_19 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:23:50,430 - INFO - Preprocessing completed successfully.
+2024-11-04 05:23:50,430 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_19\train.fr, data/en-fr/prepared\prepared\epoch_19\train.en
+2024-11-04 05:23:50,487 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_19\valid.fr, data/en-fr/prepared\prepared\epoch_19\valid.en
+2024-11-04 05:27:43,727 - INFO - Epoch 019: loss 2.661 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.93 | clip 1
+2024-11-04 05:27:43,727 - INFO - Validating at epoch 19...
+2024-11-04 05:27:47,421 - INFO - Epoch 19: Validation Perplexity: 13.9326
+2024-11-04 05:27:47,454 - INFO - Starting epoch 20
+2024-11-04 05:27:47,455 - INFO - Running preprocessing command:
+2024-11-04 05:27:47,455 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_20 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:27:52,445 - INFO - Preprocessing completed successfully.
+2024-11-04 05:27:52,446 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_20\train.fr, data/en-fr/prepared\prepared\epoch_20\train.en
+2024-11-04 05:27:52,507 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_20\valid.fr, data/en-fr/prepared\prepared\epoch_20\valid.en
+2024-11-04 05:31:45,003 - INFO - Epoch 020: loss 2.642 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.69 | clip 1
+2024-11-04 05:31:45,004 - INFO - Validating at epoch 20...
+2024-11-04 05:31:48,710 - INFO - Epoch 20: Validation Perplexity: 13.8209
+2024-11-04 05:31:48,743 - INFO - Starting epoch 21
+2024-11-04 05:31:48,744 - INFO - Running preprocessing command:
+2024-11-04 05:31:48,744 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_21 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:31:53,716 - INFO - Preprocessing completed successfully.
+2024-11-04 05:31:53,717 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_21\train.fr, data/en-fr/prepared\prepared\epoch_21\train.en
+2024-11-04 05:31:53,735 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_21\valid.fr, data/en-fr/prepared\prepared\epoch_21\valid.en
+2024-11-04 05:35:45,825 - INFO - Epoch 021: loss 2.623 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.92 | clip 1
+2024-11-04 05:35:45,825 - INFO - Validating at epoch 21...
+2024-11-04 05:35:49,519 - INFO - Epoch 21: Validation Perplexity: 13.6194
+2024-11-04 05:35:49,553 - INFO - Starting epoch 22
+2024-11-04 05:35:49,554 - INFO - Running preprocessing command:
+2024-11-04 05:35:49,554 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_22 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:35:54,566 - INFO - Preprocessing completed successfully.
+2024-11-04 05:35:54,566 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_22\train.fr, data/en-fr/prepared\prepared\epoch_22\train.en
+2024-11-04 05:35:54,630 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_22\valid.fr, data/en-fr/prepared\prepared\epoch_22\valid.en
+2024-11-04 05:39:46,555 - INFO - Epoch 022: loss 2.603 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.92 | clip 1
+2024-11-04 05:39:46,556 - INFO - Validating at epoch 22...
+2024-11-04 05:39:50,260 - INFO - Epoch 22: Validation Perplexity: 13.4160
+2024-11-04 05:39:50,293 - INFO - Starting epoch 23
+2024-11-04 05:39:50,293 - INFO - Running preprocessing command:
+2024-11-04 05:39:50,293 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_23 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:39:55,289 - INFO - Preprocessing completed successfully.
+2024-11-04 05:39:55,289 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_23\train.fr, data/en-fr/prepared\prepared\epoch_23\train.en
+2024-11-04 05:39:55,306 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_23\valid.fr, data/en-fr/prepared\prepared\epoch_23\valid.en
+2024-11-04 05:43:49,144 - INFO - Epoch 023: loss 2.582 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.81 | clip 1
+2024-11-04 05:43:49,145 - INFO - Validating at epoch 23...
+2024-11-04 05:43:52,858 - INFO - Epoch 23: Validation Perplexity: 13.2768
+2024-11-04 05:43:52,891 - INFO - Starting epoch 24
+2024-11-04 05:43:52,891 - INFO - Running preprocessing command:
+2024-11-04 05:43:52,892 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_24 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:43:57,906 - INFO - Preprocessing completed successfully.
+2024-11-04 05:43:57,907 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_24\train.fr, data/en-fr/prepared\prepared\epoch_24\train.en
+2024-11-04 05:43:57,924 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_24\valid.fr, data/en-fr/prepared\prepared\epoch_24\valid.en
+2024-11-04 05:47:50,353 - INFO - Epoch 024: loss 2.563 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.72 | clip 1
+2024-11-04 05:47:50,354 - INFO - Validating at epoch 24...
+2024-11-04 05:47:54,089 - INFO - Epoch 24: Validation Perplexity: 12.9672
+2024-11-04 05:47:54,121 - INFO - Starting epoch 25
+2024-11-04 05:47:54,121 - INFO - Running preprocessing command:
+2024-11-04 05:47:54,122 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_25 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:47:59,117 - INFO - Preprocessing completed successfully.
+2024-11-04 05:47:59,117 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_25\train.fr, data/en-fr/prepared\prepared\epoch_25\train.en
+2024-11-04 05:47:59,177 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_25\valid.fr, data/en-fr/prepared\prepared\epoch_25\valid.en
+2024-11-04 05:51:50,298 - INFO - Epoch 025: loss 2.542 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.54 | clip 1
+2024-11-04 05:51:50,298 - INFO - Validating at epoch 25...
+2024-11-04 05:51:53,971 - INFO - Epoch 25: Validation Perplexity: 12.9639
+2024-11-04 05:51:54,003 - INFO - Starting epoch 26
+2024-11-04 05:51:54,004 - INFO - Running preprocessing command:
+2024-11-04 05:51:54,004 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_26 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:51:59,000 - INFO - Preprocessing completed successfully.
+2024-11-04 05:51:59,000 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_26\train.fr, data/en-fr/prepared\prepared\epoch_26\train.en
+2024-11-04 05:51:59,018 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_26\valid.fr, data/en-fr/prepared\prepared\epoch_26\valid.en
+2024-11-04 05:55:51,065 - INFO - Epoch 026: loss 2.526 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.79 | clip 1
+2024-11-04 05:55:51,065 - INFO - Validating at epoch 26...
+2024-11-04 05:55:54,730 - INFO - Epoch 26: Validation Perplexity: 12.7875
+2024-11-04 05:55:54,762 - INFO - Starting epoch 27
+2024-11-04 05:55:54,763 - INFO - Running preprocessing command:
+2024-11-04 05:55:54,763 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_27 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 05:55:59,759 - INFO - Preprocessing completed successfully.
+2024-11-04 05:55:59,759 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_27\train.fr, data/en-fr/prepared\prepared\epoch_27\train.en
+2024-11-04 05:55:59,777 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_27\valid.fr, data/en-fr/prepared\prepared\epoch_27\valid.en
+2024-11-04 05:59:52,255 - INFO - Epoch 027: loss 2.512 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.55 | clip 1
+2024-11-04 05:59:52,255 - INFO - Validating at epoch 27...
+2024-11-04 05:59:55,922 - INFO - Epoch 27: Validation Perplexity: 12.6838
+2024-11-04 05:59:55,956 - INFO - Starting epoch 28
+2024-11-04 05:59:55,956 - INFO - Running preprocessing command:
+2024-11-04 05:59:55,956 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_28 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:00:00,950 - INFO - Preprocessing completed successfully.
+2024-11-04 06:00:00,950 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_28\train.fr, data/en-fr/prepared\prepared\epoch_28\train.en
+2024-11-04 06:00:01,017 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_28\valid.fr, data/en-fr/prepared\prepared\epoch_28\valid.en
+2024-11-04 06:03:52,659 - INFO - Epoch 028: loss 2.495 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.71 | clip 1
+2024-11-04 06:03:52,659 - INFO - Validating at epoch 28...
+2024-11-04 06:03:56,332 - INFO - Epoch 28: Validation Perplexity: 12.4827
+2024-11-04 06:03:56,366 - INFO - Starting epoch 29
+2024-11-04 06:03:56,366 - INFO - Running preprocessing command:
+2024-11-04 06:03:56,366 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_29 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:04:01,367 - INFO - Preprocessing completed successfully.
+2024-11-04 06:04:01,367 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_29\train.fr, data/en-fr/prepared\prepared\epoch_29\train.en
+2024-11-04 06:04:01,385 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_29\valid.fr, data/en-fr/prepared\prepared\epoch_29\valid.en
+2024-11-04 06:07:53,165 - INFO - Epoch 029: loss 2.485 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.37 | clip 1
+2024-11-04 06:07:53,165 - INFO - Validating at epoch 29...
+2024-11-04 06:07:56,868 - INFO - Epoch 29: Validation Perplexity: 12.3618
+2024-11-04 06:07:56,900 - INFO - Starting epoch 30
+2024-11-04 06:07:56,901 - INFO - Running preprocessing command:
+2024-11-04 06:07:56,902 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_30 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:08:01,898 - INFO - Preprocessing completed successfully.
+2024-11-04 06:08:01,899 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_30\train.fr, data/en-fr/prepared\prepared\epoch_30\train.en
+2024-11-04 06:08:01,960 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_30\valid.fr, data/en-fr/prepared\prepared\epoch_30\valid.en
+2024-11-04 06:11:54,003 - INFO - Epoch 030: loss 2.469 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.58 | clip 1
+2024-11-04 06:11:54,003 - INFO - Validating at epoch 30...
+2024-11-04 06:11:57,621 - INFO - Epoch 30: Validation Perplexity: 12.3705
+2024-11-04 06:11:57,638 - INFO - Starting epoch 31
+2024-11-04 06:11:57,639 - INFO - Running preprocessing command:
+2024-11-04 06:11:57,639 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_31 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:12:02,706 - INFO - Preprocessing completed successfully.
+2024-11-04 06:12:02,706 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_31\train.fr, data/en-fr/prepared\prepared\epoch_31\train.en
+2024-11-04 06:12:02,766 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_31\valid.fr, data/en-fr/prepared\prepared\epoch_31\valid.en
+2024-11-04 06:15:58,435 - INFO - Epoch 031: loss 2.46 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.45 | clip 1
+2024-11-04 06:15:58,436 - INFO - Validating at epoch 31...
+2024-11-04 06:16:02,124 - INFO - Epoch 31: Validation Perplexity: 12.2558
+2024-11-04 06:16:02,156 - INFO - Starting epoch 32
+2024-11-04 06:16:02,157 - INFO - Running preprocessing command:
+2024-11-04 06:16:02,157 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_32 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:16:07,151 - INFO - Preprocessing completed successfully.
+2024-11-04 06:16:07,151 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_32\train.fr, data/en-fr/prepared\prepared\epoch_32\train.en
+2024-11-04 06:16:07,169 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_32\valid.fr, data/en-fr/prepared\prepared\epoch_32\valid.en
+2024-11-04 06:20:01,029 - INFO - Epoch 032: loss 2.446 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.47 | clip 1
+2024-11-04 06:20:01,029 - INFO - Validating at epoch 32...
+2024-11-04 06:20:04,736 - INFO - Epoch 32: Validation Perplexity: 12.2924
+2024-11-04 06:20:04,754 - INFO - Starting epoch 33
+2024-11-04 06:20:04,755 - INFO - Running preprocessing command:
+2024-11-04 06:20:04,755 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_33 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:20:09,751 - INFO - Preprocessing completed successfully.
+2024-11-04 06:20:09,751 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_33\train.fr, data/en-fr/prepared\prepared\epoch_33\train.en
+2024-11-04 06:20:09,817 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_33\valid.fr, data/en-fr/prepared\prepared\epoch_33\valid.en
+2024-11-04 06:24:02,304 - INFO - Epoch 033: loss 2.44 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.41 | clip 1
+2024-11-04 06:24:02,304 - INFO - Validating at epoch 33...
+2024-11-04 06:24:06,063 - INFO - Epoch 33: Validation Perplexity: 12.2726
+2024-11-04 06:24:06,080 - INFO - Starting epoch 34
+2024-11-04 06:24:06,081 - INFO - Running preprocessing command:
+2024-11-04 06:24:06,081 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_34 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:24:11,093 - INFO - Preprocessing completed successfully.
+2024-11-04 06:24:11,094 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_34\train.fr, data/en-fr/prepared\prepared\epoch_34\train.en
+2024-11-04 06:24:11,153 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_34\valid.fr, data/en-fr/prepared\prepared\epoch_34\valid.en
+2024-11-04 06:28:03,387 - INFO - Epoch 034: loss 2.42 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.45 | clip 1
+2024-11-04 06:28:03,387 - INFO - Validating at epoch 34...
+2024-11-04 06:28:07,104 - INFO - Epoch 34: Validation Perplexity: 12.0560
+2024-11-04 06:28:07,137 - INFO - Starting epoch 35
+2024-11-04 06:28:07,137 - INFO - Running preprocessing command:
+2024-11-04 06:28:07,137 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_35 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:28:12,135 - INFO - Preprocessing completed successfully.
+2024-11-04 06:28:12,136 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_35\train.fr, data/en-fr/prepared\prepared\epoch_35\train.en
+2024-11-04 06:28:12,153 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_35\valid.fr, data/en-fr/prepared\prepared\epoch_35\valid.en
+2024-11-04 06:32:03,761 - INFO - Epoch 035: loss 2.41 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.39 | clip 1
+2024-11-04 06:32:03,761 - INFO - Validating at epoch 35...
+2024-11-04 06:32:07,447 - INFO - Epoch 35: Validation Perplexity: 11.9781
+2024-11-04 06:32:07,481 - INFO - Starting epoch 36
+2024-11-04 06:32:07,482 - INFO - Running preprocessing command:
+2024-11-04 06:32:07,482 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_36 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:32:12,478 - INFO - Preprocessing completed successfully.
+2024-11-04 06:32:12,478 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_36\train.fr, data/en-fr/prepared\prepared\epoch_36\train.en
+2024-11-04 06:32:12,540 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_36\valid.fr, data/en-fr/prepared\prepared\epoch_36\valid.en
+2024-11-04 06:36:05,706 - INFO - Epoch 036: loss 2.402 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.25 | clip 0.9999
+2024-11-04 06:36:05,706 - INFO - Validating at epoch 36...
+2024-11-04 06:36:09,419 - INFO - Epoch 36: Validation Perplexity: 11.9825
+2024-11-04 06:36:09,435 - INFO - Starting epoch 37
+2024-11-04 06:36:09,436 - INFO - Running preprocessing command:
+2024-11-04 06:36:09,436 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_37 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:36:14,547 - INFO - Preprocessing completed successfully.
+2024-11-04 06:36:14,548 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_37\train.fr, data/en-fr/prepared\prepared\epoch_37\train.en
+2024-11-04 06:36:14,612 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_37\valid.fr, data/en-fr/prepared\prepared\epoch_37\valid.en
+2024-11-04 06:40:05,342 - INFO - Epoch 037: loss 2.387 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.45 | clip 1
+2024-11-04 06:40:05,342 - INFO - Validating at epoch 37...
+2024-11-04 06:40:09,028 - INFO - Epoch 37: Validation Perplexity: 12.0397
+2024-11-04 06:40:09,046 - INFO - Starting epoch 38
+2024-11-04 06:40:09,046 - INFO - Running preprocessing command:
+2024-11-04 06:40:09,046 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_38 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:40:14,046 - INFO - Preprocessing completed successfully.
+2024-11-04 06:40:14,046 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_38\train.fr, data/en-fr/prepared\prepared\epoch_38\train.en
+2024-11-04 06:40:14,064 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_38\valid.fr, data/en-fr/prepared\prepared\epoch_38\valid.en
+2024-11-04 06:44:06,412 - INFO - Epoch 038: loss 2.384 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.31 | clip 1
+2024-11-04 06:44:06,412 - INFO - Validating at epoch 38...
+2024-11-04 06:44:10,141 - INFO - Epoch 38: Validation Perplexity: 11.9258
+2024-11-04 06:44:10,175 - INFO - Starting epoch 39
+2024-11-04 06:44:10,176 - INFO - Running preprocessing command:
+2024-11-04 06:44:10,176 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_39 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:44:15,170 - INFO - Preprocessing completed successfully.
+2024-11-04 06:44:15,171 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_39\train.fr, data/en-fr/prepared\prepared\epoch_39\train.en
+2024-11-04 06:44:15,229 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_39\valid.fr, data/en-fr/prepared\prepared\epoch_39\valid.en
+2024-11-04 06:48:07,941 - INFO - Epoch 039: loss 2.371 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.05 | clip 1
+2024-11-04 06:48:07,942 - INFO - Validating at epoch 39...
+2024-11-04 06:48:11,623 - INFO - Epoch 39: Validation Perplexity: 12.0798
+2024-11-04 06:48:11,641 - INFO - Starting epoch 40
+2024-11-04 06:48:11,641 - INFO - Running preprocessing command:
+2024-11-04 06:48:11,641 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_40 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:48:16,647 - INFO - Preprocessing completed successfully.
+2024-11-04 06:48:16,648 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_40\train.fr, data/en-fr/prepared\prepared\epoch_40\train.en
+2024-11-04 06:48:16,665 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_40\valid.fr, data/en-fr/prepared\prepared\epoch_40\valid.en
+2024-11-04 06:52:09,061 - INFO - Epoch 040: loss 2.361 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.28 | clip 1
+2024-11-04 06:52:09,061 - INFO - Validating at epoch 40...
+2024-11-04 06:52:12,709 - INFO - Epoch 40: Validation Perplexity: 12.1967
+2024-11-04 06:52:12,726 - INFO - Starting epoch 41
+2024-11-04 06:52:12,726 - INFO - Running preprocessing command:
+2024-11-04 06:52:12,727 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_41 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 06:52:17,716 - INFO - Preprocessing completed successfully.
+2024-11-04 06:52:17,716 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_41\train.fr, data/en-fr/prepared\prepared\epoch_41\train.en
+2024-11-04 06:52:17,734 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_41\valid.fr, data/en-fr/prepared\prepared\epoch_41\valid.en
+2024-11-04 06:56:10,762 - INFO - Epoch 041: loss 2.354 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.23 | clip 1
+2024-11-04 06:56:10,762 - INFO - Validating at epoch 41...
+2024-11-04 06:56:14,443 - INFO - Epoch 41: Validation Perplexity: 12.0679
+2024-11-04 06:56:14,460 - INFO - No validation set improvements observed for 3 epochs. Early stop!
+2024-11-04 11:24:45,099 - INFO - Commencing training!
+2024-11-04 11:24:45,101 - INFO - COMMAND: train.py --data data/en-fr/prepared --source-lang fr --target-lang en --save-dir assignments/03/bpe/checkpoints --bpe_codes bpe.codes --dropout_prob 0.2
+2024-11-04 11:24:45,101 - INFO - Arguments: {'cuda': False, 'data': 'data/en-fr/prepared', 'source_lang': 'fr', 'target_lang': 'en', 'max_tokens': None, 'batch_size': 1, 'train_on_tiny': False, 'arch': 'lstm', 'max_epoch': 10000, 'clip_norm': 4.0, 'lr': 0.0003, 'patience': 3, 'log_file': None, 'save_dir': 'assignments/03/bpe/checkpoints', 'restore_file': 'checkpoint_last.pt', 'save_interval': 1, 'no_save': False, 'epoch_checkpoints': False, 'dropout_prob': 0.2, 'bpe_codes': 'bpe.codes', 'encoder_embed_dim': 64, 'encoder_embed_path': None, 'encoder_hidden_size': 64, 'encoder_num_layers': 1, 'encoder_bidirectional': 'True', 'encoder_dropout_in': 0.25, 'encoder_dropout_out': 0.25, 'decoder_embed_dim': 64, 'decoder_embed_path': None, 'decoder_hidden_size': 128, 'decoder_num_layers': 1, 'decoder_dropout_in': 0.25, 'decoder_dropout_out': 0.25, 'decoder_use_attention': 'True', 'decoder_use_lexical_model': 'False'}
+2024-11-04 11:24:45,106 - INFO - Loaded a source dictionary (fr) with 8248 words
+2024-11-04 11:24:45,108 - INFO - Loaded a target dictionary (en) with 6212 words
+2024-11-04 11:24:45,116 - INFO - Built a model with 2007364 parameters
+2024-11-04 11:24:45,878 - INFO - Starting epoch 0
+2024-11-04 11:24:45,878 - INFO - Running preprocessing command:
+2024-11-04 11:24:45,878 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_0 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 11:24:51,064 - INFO - Preprocessing completed successfully.
+2024-11-04 11:24:51,065 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_0\train.fr, data/en-fr/prepared\prepared\epoch_0\train.en
+2024-11-04 11:24:51,083 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_0\valid.fr, data/en-fr/prepared\prepared\epoch_0\valid.en
+2024-11-04 11:29:39,306 - INFO - Epoch 000: loss 4.389 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 30.72 | clip 1
+2024-11-04 11:29:39,306 - INFO - Validating at epoch 0...
+2024-11-04 11:29:43,135 - INFO - Epoch 0: Validation Perplexity: 43.3268
+2024-11-04 11:29:43,166 - INFO - Starting epoch 1
+2024-11-04 11:29:43,166 - INFO - Running preprocessing command:
+2024-11-04 11:29:43,166 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_1 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 11:29:48,339 - INFO - Preprocessing completed successfully.
+2024-11-04 11:29:48,339 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_1\train.fr, data/en-fr/prepared\prepared\epoch_1\train.en
+2024-11-04 11:29:48,356 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_1\valid.fr, data/en-fr/prepared\prepared\epoch_1\valid.en
+2024-11-04 11:36:54,109 - INFO - Epoch 001: loss 3.722 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 34.71 | clip 1
+2024-11-04 11:36:54,109 - INFO - Validating at epoch 1...
+2024-11-04 11:36:58,007 - INFO - Epoch 1: Validation Perplexity: 32.2495
+2024-11-04 11:36:58,041 - INFO - Starting epoch 2
+2024-11-04 11:36:58,041 - INFO - Running preprocessing command:
+2024-11-04 11:36:58,042 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_2 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 11:37:03,251 - INFO - Preprocessing completed successfully.
+2024-11-04 11:37:03,252 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_2\train.fr, data/en-fr/prepared\prepared\epoch_2\train.en
+2024-11-04 11:37:03,268 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_2\valid.fr, data/en-fr/prepared\prepared\epoch_2\valid.en
+2024-11-04 11:41:52,579 - INFO - Epoch 002: loss 3.501 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 36.79 | clip 1
+2024-11-04 11:41:52,580 - INFO - Validating at epoch 2...
+2024-11-04 11:41:56,361 - INFO - Epoch 2: Validation Perplexity: 26.2747
+2024-11-04 11:41:56,397 - INFO - Starting epoch 3
+2024-11-04 11:41:56,397 - INFO - Running preprocessing command:
+2024-11-04 11:41:56,398 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_3 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 11:42:01,751 - INFO - Preprocessing completed successfully.
+2024-11-04 11:42:01,752 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_3\train.fr, data/en-fr/prepared\prepared\epoch_3\train.en
+2024-11-04 11:42:01,768 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_3\valid.fr, data/en-fr/prepared\prepared\epoch_3\valid.en
+2024-11-04 11:46:16,499 - INFO - Epoch 003: loss 3.366 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 38.07 | clip 1
+2024-11-04 11:46:16,500 - INFO - Validating at epoch 3...
+2024-11-04 11:46:20,880 - INFO - Epoch 3: Validation Perplexity: 23.1733
+2024-11-04 11:46:20,917 - INFO - Starting epoch 4
+2024-11-04 11:46:20,917 - INFO - Running preprocessing command:
+2024-11-04 11:46:20,918 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_4 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 11:46:26,601 - INFO - Preprocessing completed successfully.
+2024-11-04 11:46:26,602 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_4\train.fr, data/en-fr/prepared\prepared\epoch_4\train.en
+2024-11-04 11:46:26,619 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_4\valid.fr, data/en-fr/prepared\prepared\epoch_4\valid.en
+2024-11-04 11:51:07,401 - INFO - Epoch 004: loss 3.259 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 39.27 | clip 1
+2024-11-04 11:51:07,401 - INFO - Validating at epoch 4...
+2024-11-04 11:51:11,908 - INFO - Epoch 4: Validation Perplexity: 21.3987
+2024-11-04 11:51:11,944 - INFO - Starting epoch 5
+2024-11-04 11:51:11,944 - INFO - Running preprocessing command:
+2024-11-04 11:51:11,945 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_5 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 11:51:17,391 - INFO - Preprocessing completed successfully.
+2024-11-04 11:51:17,391 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_5\train.fr, data/en-fr/prepared\prepared\epoch_5\train.en
+2024-11-04 11:51:17,406 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_5\valid.fr, data/en-fr/prepared\prepared\epoch_5\valid.en
+2024-11-04 11:55:30,163 - INFO - Epoch 005: loss 3.168 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 40.1 | clip 1
+2024-11-04 11:55:30,163 - INFO - Validating at epoch 5...
+2024-11-04 11:55:33,970 - INFO - Epoch 5: Validation Perplexity: 19.8219
+2024-11-04 11:55:34,003 - INFO - Starting epoch 6
+2024-11-04 11:55:34,004 - INFO - Running preprocessing command:
+2024-11-04 11:55:34,004 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_6 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 11:55:39,258 - INFO - Preprocessing completed successfully.
+2024-11-04 11:55:39,258 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_6\train.fr, data/en-fr/prepared\prepared\epoch_6\train.en
+2024-11-04 11:55:39,274 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_6\valid.fr, data/en-fr/prepared\prepared\epoch_6\valid.en
+2024-11-04 11:59:49,812 - INFO - Epoch 006: loss 3.104 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 40.97 | clip 1
+2024-11-04 11:59:49,812 - INFO - Validating at epoch 6...
+2024-11-04 11:59:53,702 - INFO - Epoch 6: Validation Perplexity: 18.8977
+2024-11-04 11:59:53,748 - INFO - Starting epoch 7
+2024-11-04 11:59:53,749 - INFO - Running preprocessing command:
+2024-11-04 11:59:53,749 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_7 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 11:59:59,113 - INFO - Preprocessing completed successfully.
+2024-11-04 11:59:59,113 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_7\train.fr, data/en-fr/prepared\prepared\epoch_7\train.en
+2024-11-04 11:59:59,129 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_7\valid.fr, data/en-fr/prepared\prepared\epoch_7\valid.en
+2024-11-04 12:04:08,296 - INFO - Epoch 007: loss 3.044 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 41.74 | clip 1
+2024-11-04 12:04:08,296 - INFO - Validating at epoch 7...
+2024-11-04 12:04:12,137 - INFO - Epoch 7: Validation Perplexity: 18.0741
+2024-11-04 12:04:12,171 - INFO - Starting epoch 8
+2024-11-04 12:04:12,172 - INFO - Running preprocessing command:
+2024-11-04 12:04:12,172 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_8 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:04:17,380 - INFO - Preprocessing completed successfully.
+2024-11-04 12:04:17,380 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_8\train.fr, data/en-fr/prepared\prepared\epoch_8\train.en
+2024-11-04 12:04:17,396 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_8\valid.fr, data/en-fr/prepared\prepared\epoch_8\valid.en
+2024-11-04 12:08:28,741 - INFO - Epoch 008: loss 2.98 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.09 | clip 1
+2024-11-04 12:08:28,742 - INFO - Validating at epoch 8...
+2024-11-04 12:08:32,635 - INFO - Epoch 8: Validation Perplexity: 16.9177
+2024-11-04 12:08:32,668 - INFO - Starting epoch 9
+2024-11-04 12:08:32,669 - INFO - Running preprocessing command:
+2024-11-04 12:08:32,669 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_9 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:08:37,992 - INFO - Preprocessing completed successfully.
+2024-11-04 12:08:37,992 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_9\train.fr, data/en-fr/prepared\prepared\epoch_9\train.en
+2024-11-04 12:08:38,008 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_9\valid.fr, data/en-fr/prepared\prepared\epoch_9\valid.en
+2024-11-04 12:12:45,092 - INFO - Epoch 009: loss 2.93 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.49 | clip 1
+2024-11-04 12:12:45,094 - INFO - Validating at epoch 9...
+2024-11-04 12:12:48,981 - INFO - Epoch 9: Validation Perplexity: 16.2960
+2024-11-04 12:12:49,015 - INFO - Starting epoch 10
+2024-11-04 12:12:49,015 - INFO - Running preprocessing command:
+2024-11-04 12:12:49,015 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_10 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:12:54,354 - INFO - Preprocessing completed successfully.
+2024-11-04 12:12:54,355 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_10\train.fr, data/en-fr/prepared\prepared\epoch_10\train.en
+2024-11-04 12:12:54,370 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_10\valid.fr, data/en-fr/prepared\prepared\epoch_10\valid.en
+2024-11-04 12:17:01,759 - INFO - Epoch 010: loss 2.892 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.72 | clip 1
+2024-11-04 12:17:01,759 - INFO - Validating at epoch 10...
+2024-11-04 12:17:05,580 - INFO - Epoch 10: Validation Perplexity: 15.7810
+2024-11-04 12:17:05,613 - INFO - Starting epoch 11
+2024-11-04 12:17:05,614 - INFO - Running preprocessing command:
+2024-11-04 12:17:05,614 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_11 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:17:10,742 - INFO - Preprocessing completed successfully.
+2024-11-04 12:17:10,742 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_11\train.fr, data/en-fr/prepared\prepared\epoch_11\train.en
+2024-11-04 12:17:10,758 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_11\valid.fr, data/en-fr/prepared\prepared\epoch_11\valid.en
+2024-11-04 12:21:16,421 - INFO - Epoch 011: loss 2.847 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.03 | clip 1
+2024-11-04 12:21:16,421 - INFO - Validating at epoch 11...
+2024-11-04 12:21:20,305 - INFO - Epoch 11: Validation Perplexity: 15.2758
+2024-11-04 12:21:20,340 - INFO - Starting epoch 12
+2024-11-04 12:21:20,341 - INFO - Running preprocessing command:
+2024-11-04 12:21:20,341 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_12 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:21:25,873 - INFO - Preprocessing completed successfully.
+2024-11-04 12:21:25,874 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_12\train.fr, data/en-fr/prepared\prepared\epoch_12\train.en
+2024-11-04 12:21:25,890 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_12\valid.fr, data/en-fr/prepared\prepared\epoch_12\valid.en
+2024-11-04 12:25:38,989 - INFO - Epoch 012: loss 2.807 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.14 | clip 1
+2024-11-04 12:25:38,989 - INFO - Validating at epoch 12...
+2024-11-04 12:25:43,365 - INFO - Epoch 12: Validation Perplexity: 14.9676
+2024-11-04 12:25:43,402 - INFO - Starting epoch 13
+2024-11-04 12:25:43,403 - INFO - Running preprocessing command:
+2024-11-04 12:25:43,403 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_13 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:25:49,164 - INFO - Preprocessing completed successfully.
+2024-11-04 12:25:49,164 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_13\train.fr, data/en-fr/prepared\prepared\epoch_13\train.en
+2024-11-04 12:25:49,181 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_13\valid.fr, data/en-fr/prepared\prepared\epoch_13\valid.en
+2024-11-04 12:30:01,522 - INFO - Epoch 013: loss 2.769 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.42 | clip 1
+2024-11-04 12:30:01,522 - INFO - Validating at epoch 13...
+2024-11-04 12:30:05,383 - INFO - Epoch 13: Validation Perplexity: 14.4911
+2024-11-04 12:30:05,420 - INFO - Starting epoch 14
+2024-11-04 12:30:05,421 - INFO - Running preprocessing command:
+2024-11-04 12:30:05,421 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_14 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:30:10,752 - INFO - Preprocessing completed successfully.
+2024-11-04 12:30:10,752 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_14\train.fr, data/en-fr/prepared\prepared\epoch_14\train.en
+2024-11-04 12:30:10,770 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_14\valid.fr, data/en-fr/prepared\prepared\epoch_14\valid.en
+2024-11-04 12:34:24,631 - INFO - Epoch 014: loss 2.74 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.49 | clip 1
+2024-11-04 12:34:24,631 - INFO - Validating at epoch 14...
+2024-11-04 12:34:28,620 - INFO - Epoch 14: Validation Perplexity: 14.1447
+2024-11-04 12:34:28,653 - INFO - Starting epoch 15
+2024-11-04 12:34:28,653 - INFO - Running preprocessing command:
+2024-11-04 12:34:28,653 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_15 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:34:33,944 - INFO - Preprocessing completed successfully.
+2024-11-04 12:34:33,944 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_15\train.fr, data/en-fr/prepared\prepared\epoch_15\train.en
+2024-11-04 12:34:33,962 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_15\valid.fr, data/en-fr/prepared\prepared\epoch_15\valid.en
+2024-11-04 12:38:49,403 - INFO - Epoch 015: loss 2.707 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.37 | clip 1
+2024-11-04 12:38:49,403 - INFO - Validating at epoch 15...
+2024-11-04 12:38:53,437 - INFO - Epoch 15: Validation Perplexity: 14.0653
+2024-11-04 12:38:53,471 - INFO - Starting epoch 16
+2024-11-04 12:38:53,472 - INFO - Running preprocessing command:
+2024-11-04 12:38:53,472 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_16 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:38:58,742 - INFO - Preprocessing completed successfully.
+2024-11-04 12:38:58,742 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_16\train.fr, data/en-fr/prepared\prepared\epoch_16\train.en
+2024-11-04 12:38:58,758 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_16\valid.fr, data/en-fr/prepared\prepared\epoch_16\valid.en
+2024-11-04 12:43:08,387 - INFO - Epoch 016: loss 2.681 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.69 | clip 1
+2024-11-04 12:43:08,387 - INFO - Validating at epoch 16...
+2024-11-04 12:43:12,256 - INFO - Epoch 16: Validation Perplexity: 13.6457
+2024-11-04 12:43:12,289 - INFO - Starting epoch 17
+2024-11-04 12:43:12,290 - INFO - Running preprocessing command:
+2024-11-04 12:43:12,290 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_17 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:43:17,660 - INFO - Preprocessing completed successfully.
+2024-11-04 12:43:17,661 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_17\train.fr, data/en-fr/prepared\prepared\epoch_17\train.en
+2024-11-04 12:43:17,677 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_17\valid.fr, data/en-fr/prepared\prepared\epoch_17\valid.en
+2024-11-04 12:47:16,674 - INFO - Epoch 017: loss 2.655 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.64 | clip 1
+2024-11-04 12:47:16,674 - INFO - Validating at epoch 17...
+2024-11-04 12:47:20,424 - INFO - Epoch 17: Validation Perplexity: 13.4758
+2024-11-04 12:47:20,457 - INFO - Starting epoch 18
+2024-11-04 12:47:20,458 - INFO - Running preprocessing command:
+2024-11-04 12:47:20,458 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_18 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:47:25,526 - INFO - Preprocessing completed successfully.
+2024-11-04 12:47:25,527 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_18\train.fr, data/en-fr/prepared\prepared\epoch_18\train.en
+2024-11-04 12:47:25,543 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_18\valid.fr, data/en-fr/prepared\prepared\epoch_18\valid.en
+2024-11-04 12:51:28,518 - INFO - Epoch 018: loss 2.624 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.66 | clip 1
+2024-11-04 12:51:28,518 - INFO - Validating at epoch 18...
+2024-11-04 12:51:32,247 - INFO - Epoch 18: Validation Perplexity: 13.2802
+2024-11-04 12:51:32,280 - INFO - Starting epoch 19
+2024-11-04 12:51:32,281 - INFO - Running preprocessing command:
+2024-11-04 12:51:32,281 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_19 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:51:37,370 - INFO - Preprocessing completed successfully.
+2024-11-04 12:51:37,371 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_19\train.fr, data/en-fr/prepared\prepared\epoch_19\train.en
+2024-11-04 12:51:37,387 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_19\valid.fr, data/en-fr/prepared\prepared\epoch_19\valid.en
+2024-11-04 12:55:36,333 - INFO - Epoch 019: loss 2.602 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.78 | clip 1
+2024-11-04 12:55:36,333 - INFO - Validating at epoch 19...
+2024-11-04 12:55:40,055 - INFO - Epoch 19: Validation Perplexity: 12.9901
+2024-11-04 12:55:40,089 - INFO - Starting epoch 20
+2024-11-04 12:55:40,090 - INFO - Running preprocessing command:
+2024-11-04 12:55:40,090 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_20 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:55:45,207 - INFO - Preprocessing completed successfully.
+2024-11-04 12:55:45,207 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_20\train.fr, data/en-fr/prepared\prepared\epoch_20\train.en
+2024-11-04 12:55:45,223 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_20\valid.fr, data/en-fr/prepared\prepared\epoch_20\valid.en
+2024-11-04 12:59:42,757 - INFO - Epoch 020: loss 2.584 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.7 | clip 1
+2024-11-04 12:59:42,758 - INFO - Validating at epoch 20...
+2024-11-04 12:59:46,549 - INFO - Epoch 20: Validation Perplexity: 13.0071
+2024-11-04 12:59:46,565 - INFO - Starting epoch 21
+2024-11-04 12:59:46,566 - INFO - Running preprocessing command:
+2024-11-04 12:59:46,566 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_21 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 12:59:51,658 - INFO - Preprocessing completed successfully.
+2024-11-04 12:59:51,658 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_21\train.fr, data/en-fr/prepared\prepared\epoch_21\train.en
+2024-11-04 12:59:51,674 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_21\valid.fr, data/en-fr/prepared\prepared\epoch_21\valid.en
+2024-11-04 13:03:49,244 - INFO - Epoch 021: loss 2.562 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.49 | clip 1
+2024-11-04 13:03:49,244 - INFO - Validating at epoch 21...
+2024-11-04 13:03:53,024 - INFO - Epoch 21: Validation Perplexity: 12.7437
+2024-11-04 13:03:53,059 - INFO - Starting epoch 22
+2024-11-04 13:03:53,059 - INFO - Running preprocessing command:
+2024-11-04 13:03:53,059 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_22 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:03:58,158 - INFO - Preprocessing completed successfully.
+2024-11-04 13:03:58,158 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_22\train.fr, data/en-fr/prepared\prepared\epoch_22\train.en
+2024-11-04 13:03:58,174 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_22\valid.fr, data/en-fr/prepared\prepared\epoch_22\valid.en
+2024-11-04 13:08:05,740 - INFO - Epoch 022: loss 2.534 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.61 | clip 1
+2024-11-04 13:08:05,740 - INFO - Validating at epoch 22...
+2024-11-04 13:08:09,754 - INFO - Epoch 22: Validation Perplexity: 12.3732
+2024-11-04 13:08:09,794 - INFO - Starting epoch 23
+2024-11-04 13:08:09,795 - INFO - Running preprocessing command:
+2024-11-04 13:08:09,795 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_23 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:08:15,188 - INFO - Preprocessing completed successfully.
+2024-11-04 13:08:15,188 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_23\train.fr, data/en-fr/prepared\prepared\epoch_23\train.en
+2024-11-04 13:08:15,205 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_23\valid.fr, data/en-fr/prepared\prepared\epoch_23\valid.en
+2024-11-04 13:12:30,878 - INFO - Epoch 023: loss 2.527 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.87 | clip 0.9999
+2024-11-04 13:12:30,878 - INFO - Validating at epoch 23...
+2024-11-04 13:12:34,739 - INFO - Epoch 23: Validation Perplexity: 12.3465
+2024-11-04 13:12:34,771 - INFO - Starting epoch 24
+2024-11-04 13:12:34,772 - INFO - Running preprocessing command:
+2024-11-04 13:12:34,772 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_24 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:12:39,992 - INFO - Preprocessing completed successfully.
+2024-11-04 13:12:39,992 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_24\train.fr, data/en-fr/prepared\prepared\epoch_24\train.en
+2024-11-04 13:12:40,008 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_24\valid.fr, data/en-fr/prepared\prepared\epoch_24\valid.en
+2024-11-04 13:16:53,910 - INFO - Epoch 024: loss 2.503 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.41 | clip 1
+2024-11-04 13:16:53,910 - INFO - Validating at epoch 24...
+2024-11-04 13:16:57,830 - INFO - Epoch 24: Validation Perplexity: 12.2210
+2024-11-04 13:16:57,865 - INFO - Starting epoch 25
+2024-11-04 13:16:57,865 - INFO - Running preprocessing command:
+2024-11-04 13:16:57,865 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_25 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:17:03,158 - INFO - Preprocessing completed successfully.
+2024-11-04 13:17:03,158 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_25\train.fr, data/en-fr/prepared\prepared\epoch_25\train.en
+2024-11-04 13:17:03,176 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_25\valid.fr, data/en-fr/prepared\prepared\epoch_25\valid.en
+2024-11-04 13:21:14,644 - INFO - Epoch 025: loss 2.484 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.75 | clip 1
+2024-11-04 13:21:14,644 - INFO - Validating at epoch 25...
+2024-11-04 13:21:18,573 - INFO - Epoch 25: Validation Perplexity: 12.1834
+2024-11-04 13:21:18,607 - INFO - Starting epoch 26
+2024-11-04 13:21:18,608 - INFO - Running preprocessing command:
+2024-11-04 13:21:18,608 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_26 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:21:23,954 - INFO - Preprocessing completed successfully.
+2024-11-04 13:21:23,954 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_26\train.fr, data/en-fr/prepared\prepared\epoch_26\train.en
+2024-11-04 13:21:23,971 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_26\valid.fr, data/en-fr/prepared\prepared\epoch_26\valid.en
+2024-11-04 13:25:32,383 - INFO - Epoch 026: loss 2.473 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.67 | clip 1
+2024-11-04 13:25:32,383 - INFO - Validating at epoch 26...
+2024-11-04 13:25:36,267 - INFO - Epoch 26: Validation Perplexity: 12.0344
+2024-11-04 13:25:36,299 - INFO - Starting epoch 27
+2024-11-04 13:25:36,300 - INFO - Running preprocessing command:
+2024-11-04 13:25:36,300 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_27 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:25:41,563 - INFO - Preprocessing completed successfully.
+2024-11-04 13:25:41,563 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_27\train.fr, data/en-fr/prepared\prepared\epoch_27\train.en
+2024-11-04 13:25:41,579 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_27\valid.fr, data/en-fr/prepared\prepared\epoch_27\valid.en
+2024-11-04 13:29:55,492 - INFO - Epoch 027: loss 2.455 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.47 | clip 1
+2024-11-04 13:29:55,492 - INFO - Validating at epoch 27...
+2024-11-04 13:29:59,341 - INFO - Epoch 27: Validation Perplexity: 11.7893
+2024-11-04 13:29:59,376 - INFO - Starting epoch 28
+2024-11-04 13:29:59,377 - INFO - Running preprocessing command:
+2024-11-04 13:29:59,377 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_28 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:30:04,498 - INFO - Preprocessing completed successfully.
+2024-11-04 13:30:04,498 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_28\train.fr, data/en-fr/prepared\prepared\epoch_28\train.en
+2024-11-04 13:30:04,514 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_28\valid.fr, data/en-fr/prepared\prepared\epoch_28\valid.en
+2024-11-04 13:34:19,138 - INFO - Epoch 028: loss 2.441 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.51 | clip 1
+2024-11-04 13:34:19,138 - INFO - Validating at epoch 28...
+2024-11-04 13:34:22,905 - INFO - Epoch 28: Validation Perplexity: 11.7399
+2024-11-04 13:34:22,939 - INFO - Starting epoch 29
+2024-11-04 13:34:22,940 - INFO - Running preprocessing command:
+2024-11-04 13:34:22,940 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_29 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:34:28,091 - INFO - Preprocessing completed successfully.
+2024-11-04 13:34:28,092 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_29\train.fr, data/en-fr/prepared\prepared\epoch_29\train.en
+2024-11-04 13:34:28,109 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_29\valid.fr, data/en-fr/prepared\prepared\epoch_29\valid.en
+2024-11-04 13:38:48,047 - INFO - Epoch 029: loss 2.434 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.49 | clip 0.9999
+2024-11-04 13:38:48,047 - INFO - Validating at epoch 29...
+2024-11-04 13:38:52,171 - INFO - Epoch 29: Validation Perplexity: 11.7079
+2024-11-04 13:38:52,203 - INFO - Starting epoch 30
+2024-11-04 13:38:52,205 - INFO - Running preprocessing command:
+2024-11-04 13:38:52,205 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_30 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:38:57,793 - INFO - Preprocessing completed successfully.
+2024-11-04 13:38:57,793 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_30\train.fr, data/en-fr/prepared\prepared\epoch_30\train.en
+2024-11-04 13:38:57,813 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_30\valid.fr, data/en-fr/prepared\prepared\epoch_30\valid.en
+2024-11-04 13:43:16,424 - INFO - Epoch 030: loss 2.412 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.61 | clip 1
+2024-11-04 13:43:16,425 - INFO - Validating at epoch 30...
+2024-11-04 13:43:20,340 - INFO - Epoch 30: Validation Perplexity: 11.6966
+2024-11-04 13:43:20,374 - INFO - Starting epoch 31
+2024-11-04 13:43:20,375 - INFO - Running preprocessing command:
+2024-11-04 13:43:20,375 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_31 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:43:25,768 - INFO - Preprocessing completed successfully.
+2024-11-04 13:43:25,768 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_31\train.fr, data/en-fr/prepared\prepared\epoch_31\train.en
+2024-11-04 13:43:25,785 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_31\valid.fr, data/en-fr/prepared\prepared\epoch_31\valid.en
+2024-11-04 13:47:41,830 - INFO - Epoch 031: loss 2.404 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.2 | clip 1
+2024-11-04 13:47:41,830 - INFO - Validating at epoch 31...
+2024-11-04 13:47:45,716 - INFO - Epoch 31: Validation Perplexity: 11.6285
+2024-11-04 13:47:45,750 - INFO - Starting epoch 32
+2024-11-04 13:47:45,751 - INFO - Running preprocessing command:
+2024-11-04 13:47:45,751 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_32 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:47:51,003 - INFO - Preprocessing completed successfully.
+2024-11-04 13:47:51,003 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_32\train.fr, data/en-fr/prepared\prepared\epoch_32\train.en
+2024-11-04 13:47:51,019 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_32\valid.fr, data/en-fr/prepared\prepared\epoch_32\valid.en
+2024-11-04 13:52:05,159 - INFO - Epoch 032: loss 2.39 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.87 | clip 0.9999
+2024-11-04 13:52:05,159 - INFO - Validating at epoch 32...
+2024-11-04 13:52:08,943 - INFO - Epoch 32: Validation Perplexity: 11.5444
+2024-11-04 13:52:08,978 - INFO - Starting epoch 33
+2024-11-04 13:52:08,978 - INFO - Running preprocessing command:
+2024-11-04 13:52:08,978 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_33 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:52:14,181 - INFO - Preprocessing completed successfully.
+2024-11-04 13:52:14,181 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_33\train.fr, data/en-fr/prepared\prepared\epoch_33\train.en
+2024-11-04 13:52:14,198 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_33\valid.fr, data/en-fr/prepared\prepared\epoch_33\valid.en
+2024-11-04 13:56:26,680 - INFO - Epoch 033: loss 2.381 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.29 | clip 0.9999
+2024-11-04 13:56:26,680 - INFO - Validating at epoch 33...
+2024-11-04 13:56:30,516 - INFO - Epoch 33: Validation Perplexity: 11.4504
+2024-11-04 13:56:30,551 - INFO - Starting epoch 34
+2024-11-04 13:56:30,552 - INFO - Running preprocessing command:
+2024-11-04 13:56:30,552 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_34 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 13:56:35,696 - INFO - Preprocessing completed successfully.
+2024-11-04 13:56:35,697 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_34\train.fr, data/en-fr/prepared\prepared\epoch_34\train.en
+2024-11-04 13:56:35,713 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_34\valid.fr, data/en-fr/prepared\prepared\epoch_34\valid.en
+2024-11-04 14:00:46,958 - INFO - Epoch 034: loss 2.367 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.16 | clip 1
+2024-11-04 14:00:46,959 - INFO - Validating at epoch 34...
+2024-11-04 14:00:51,043 - INFO - Epoch 34: Validation Perplexity: 11.2777
+2024-11-04 14:00:51,076 - INFO - Starting epoch 35
+2024-11-04 14:00:51,076 - INFO - Running preprocessing command:
+2024-11-04 14:00:51,076 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_35 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:00:56,492 - INFO - Preprocessing completed successfully.
+2024-11-04 14:00:56,493 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_35\train.fr, data/en-fr/prepared\prepared\epoch_35\train.en
+2024-11-04 14:00:56,509 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_35\valid.fr, data/en-fr/prepared\prepared\epoch_35\valid.en
+2024-11-04 14:04:55,321 - INFO - Epoch 035: loss 2.361 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.15 | clip 1
+2024-11-04 14:04:55,321 - INFO - Validating at epoch 35...
+2024-11-04 14:04:59,109 - INFO - Epoch 35: Validation Perplexity: 11.4589
+2024-11-04 14:04:59,127 - INFO - Starting epoch 36
+2024-11-04 14:04:59,127 - INFO - Running preprocessing command:
+2024-11-04 14:04:59,127 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_36 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:05:04,248 - INFO - Preprocessing completed successfully.
+2024-11-04 14:05:04,248 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_36\train.fr, data/en-fr/prepared\prepared\epoch_36\train.en
+2024-11-04 14:05:04,265 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_36\valid.fr, data/en-fr/prepared\prepared\epoch_36\valid.en
+2024-11-04 14:09:04,348 - INFO - Epoch 036: loss 2.355 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.01 | clip 0.9999
+2024-11-04 14:09:04,348 - INFO - Validating at epoch 36...
+2024-11-04 14:09:08,089 - INFO - Epoch 36: Validation Perplexity: 11.3503
+2024-11-04 14:09:08,107 - INFO - Starting epoch 37
+2024-11-04 14:09:08,107 - INFO - Running preprocessing command:
+2024-11-04 14:09:08,108 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_37 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:09:13,222 - INFO - Preprocessing completed successfully.
+2024-11-04 14:09:13,222 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_37\train.fr, data/en-fr/prepared\prepared\epoch_37\train.en
+2024-11-04 14:09:13,238 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_37\valid.fr, data/en-fr/prepared\prepared\epoch_37\valid.en
+2024-11-04 14:13:11,844 - INFO - Epoch 037: loss 2.334 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.77 | clip 0.9999
+2024-11-04 14:13:11,844 - INFO - Validating at epoch 37...
+2024-11-04 14:13:15,566 - INFO - Epoch 37: Validation Perplexity: 11.1816
+2024-11-04 14:13:15,599 - INFO - Starting epoch 38
+2024-11-04 14:13:15,600 - INFO - Running preprocessing command:
+2024-11-04 14:13:15,600 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_38 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:13:20,711 - INFO - Preprocessing completed successfully.
+2024-11-04 14:13:20,712 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_38\train.fr, data/en-fr/prepared\prepared\epoch_38\train.en
+2024-11-04 14:13:20,727 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_38\valid.fr, data/en-fr/prepared\prepared\epoch_38\valid.en
+2024-11-04 14:17:19,872 - INFO - Epoch 038: loss 2.335 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.91 | clip 1
+2024-11-04 14:17:19,872 - INFO - Validating at epoch 38...
+2024-11-04 14:17:23,685 - INFO - Epoch 38: Validation Perplexity: 11.2669
+2024-11-04 14:17:23,701 - INFO - Starting epoch 39
+2024-11-04 14:17:23,702 - INFO - Running preprocessing command:
+2024-11-04 14:17:23,702 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_39 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:17:28,818 - INFO - Preprocessing completed successfully.
+2024-11-04 14:17:28,818 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_39\train.fr, data/en-fr/prepared\prepared\epoch_39\train.en
+2024-11-04 14:17:28,834 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_39\valid.fr, data/en-fr/prepared\prepared\epoch_39\valid.en
+2024-11-04 14:21:27,415 - INFO - Epoch 039: loss 2.318 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.02 | clip 1
+2024-11-04 14:21:27,416 - INFO - Validating at epoch 39...
+2024-11-04 14:21:31,156 - INFO - Epoch 39: Validation Perplexity: 11.1142
+2024-11-04 14:21:31,189 - INFO - Starting epoch 40
+2024-11-04 14:21:31,189 - INFO - Running preprocessing command:
+2024-11-04 14:21:31,189 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_40 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:21:36,282 - INFO - Preprocessing completed successfully.
+2024-11-04 14:21:36,283 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_40\train.fr, data/en-fr/prepared\prepared\epoch_40\train.en
+2024-11-04 14:21:36,300 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_40\valid.fr, data/en-fr/prepared\prepared\epoch_40\valid.en
+2024-11-04 14:25:36,789 - INFO - Epoch 040: loss 2.309 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.98 | clip 0.9999
+2024-11-04 14:25:36,789 - INFO - Validating at epoch 40...
+2024-11-04 14:25:40,536 - INFO - Epoch 40: Validation Perplexity: 11.1507
+2024-11-04 14:25:40,552 - INFO - Starting epoch 41
+2024-11-04 14:25:40,553 - INFO - Running preprocessing command:
+2024-11-04 14:25:40,553 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_41 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:25:45,689 - INFO - Preprocessing completed successfully.
+2024-11-04 14:25:45,690 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_41\train.fr, data/en-fr/prepared\prepared\epoch_41\train.en
+2024-11-04 14:25:45,707 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_41\valid.fr, data/en-fr/prepared\prepared\epoch_41\valid.en
+2024-11-04 14:29:44,599 - INFO - Epoch 041: loss 2.298 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.07 | clip 1
+2024-11-04 14:29:44,599 - INFO - Validating at epoch 41...
+2024-11-04 14:29:48,318 - INFO - Epoch 41: Validation Perplexity: 11.1230
+2024-11-04 14:29:48,335 - INFO - Starting epoch 42
+2024-11-04 14:29:48,335 - INFO - Running preprocessing command:
+2024-11-04 14:29:48,335 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_42 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:29:53,415 - INFO - Preprocessing completed successfully.
+2024-11-04 14:29:53,416 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_42\train.fr, data/en-fr/prepared\prepared\epoch_42\train.en
+2024-11-04 14:29:53,432 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_42\valid.fr, data/en-fr/prepared\prepared\epoch_42\valid.en
+2024-11-04 14:33:55,463 - INFO - Epoch 042: loss 2.294 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.23 | clip 0.9999
+2024-11-04 14:33:55,463 - INFO - Validating at epoch 42...
+2024-11-04 14:33:59,190 - INFO - Epoch 42: Validation Perplexity: 11.0058
+2024-11-04 14:33:59,225 - INFO - Starting epoch 43
+2024-11-04 14:33:59,226 - INFO - Running preprocessing command:
+2024-11-04 14:33:59,226 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_43 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:34:04,355 - INFO - Preprocessing completed successfully.
+2024-11-04 14:34:04,356 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_43\train.fr, data/en-fr/prepared\prepared\epoch_43\train.en
+2024-11-04 14:34:04,372 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_43\valid.fr, data/en-fr/prepared\prepared\epoch_43\valid.en
+2024-11-04 14:38:15,454 - INFO - Epoch 043: loss 2.29 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.84 | clip 1
+2024-11-04 14:38:15,455 - INFO - Validating at epoch 43...
+2024-11-04 14:38:19,390 - INFO - Epoch 43: Validation Perplexity: 10.9728
+2024-11-04 14:38:19,426 - INFO - Starting epoch 44
+2024-11-04 14:38:19,426 - INFO - Running preprocessing command:
+2024-11-04 14:38:19,426 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_44 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:38:24,829 - INFO - Preprocessing completed successfully.
+2024-11-04 14:38:24,830 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_44\train.fr, data/en-fr/prepared\prepared\epoch_44\train.en
+2024-11-04 14:38:24,847 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_44\valid.fr, data/en-fr/prepared\prepared\epoch_44\valid.en
+2024-11-04 14:42:38,862 - INFO - Epoch 044: loss 2.274 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.91 | clip 1
+2024-11-04 14:42:38,862 - INFO - Validating at epoch 44...
+2024-11-04 14:42:42,802 - INFO - Epoch 44: Validation Perplexity: 11.0155
+2024-11-04 14:42:42,819 - INFO - Starting epoch 45
+2024-11-04 14:42:42,819 - INFO - Running preprocessing command:
+2024-11-04 14:42:42,819 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_45 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:42:48,136 - INFO - Preprocessing completed successfully.
+2024-11-04 14:42:48,137 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_45\train.fr, data/en-fr/prepared\prepared\epoch_45\train.en
+2024-11-04 14:42:48,153 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_45\valid.fr, data/en-fr/prepared\prepared\epoch_45\valid.en
+2024-11-04 14:47:02,233 - INFO - Epoch 045: loss 2.273 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.86 | clip 1
+2024-11-04 14:47:02,233 - INFO - Validating at epoch 45...
+2024-11-04 14:47:06,152 - INFO - Epoch 45: Validation Perplexity: 11.0311
+2024-11-04 14:47:06,170 - INFO - Starting epoch 46
+2024-11-04 14:47:06,170 - INFO - Running preprocessing command:
+2024-11-04 14:47:06,170 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_46 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:47:11,542 - INFO - Preprocessing completed successfully.
+2024-11-04 14:47:11,542 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_46\train.fr, data/en-fr/prepared\prepared\epoch_46\train.en
+2024-11-04 14:47:11,559 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_46\valid.fr, data/en-fr/prepared\prepared\epoch_46\valid.en
+2024-11-04 14:51:30,740 - INFO - Epoch 046: loss 2.263 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 42.86 | clip 1
+2024-11-04 14:51:30,740 - INFO - Validating at epoch 46...
+2024-11-04 14:51:34,594 - INFO - Epoch 46: Validation Perplexity: 10.8974
+2024-11-04 14:51:34,627 - INFO - Starting epoch 47
+2024-11-04 14:51:34,628 - INFO - Running preprocessing command:
+2024-11-04 14:51:34,628 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_47 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:51:40,048 - INFO - Preprocessing completed successfully.
+2024-11-04 14:51:40,049 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_47\train.fr, data/en-fr/prepared\prepared\epoch_47\train.en
+2024-11-04 14:51:40,065 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_47\valid.fr, data/en-fr/prepared\prepared\epoch_47\valid.en
+2024-11-04 14:55:51,658 - INFO - Epoch 047: loss 2.257 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.04 | clip 1
+2024-11-04 14:55:51,659 - INFO - Validating at epoch 47...
+2024-11-04 14:55:55,630 - INFO - Epoch 47: Validation Perplexity: 10.9123
+2024-11-04 14:55:55,647 - INFO - Starting epoch 48
+2024-11-04 14:55:55,647 - INFO - Running preprocessing command:
+2024-11-04 14:55:55,647 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_48 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 14:56:00,816 - INFO - Preprocessing completed successfully.
+2024-11-04 14:56:00,816 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_48\train.fr, data/en-fr/prepared\prepared\epoch_48\train.en
+2024-11-04 14:56:00,833 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_48\valid.fr, data/en-fr/prepared\prepared\epoch_48\valid.en
+2024-11-04 15:00:18,575 - INFO - Epoch 048: loss 2.239 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.08 | clip 1
+2024-11-04 15:00:18,575 - INFO - Validating at epoch 48...
+2024-11-04 15:00:22,561 - INFO - Epoch 48: Validation Perplexity: 10.8975
+2024-11-04 15:00:22,579 - INFO - Starting epoch 49
+2024-11-04 15:00:22,579 - INFO - Running preprocessing command:
+2024-11-04 15:00:22,579 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_49 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 15:00:27,886 - INFO - Preprocessing completed successfully.
+2024-11-04 15:00:27,887 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_49\train.fr, data/en-fr/prepared\prepared\epoch_49\train.en
+2024-11-04 15:00:27,904 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_49\valid.fr, data/en-fr/prepared\prepared\epoch_49\valid.en
+2024-11-04 15:04:39,228 - INFO - Epoch 049: loss 2.243 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.1 | clip 1
+2024-11-04 15:04:39,228 - INFO - Validating at epoch 49...
+2024-11-04 15:04:43,099 - INFO - Epoch 49: Validation Perplexity: 10.7923
+2024-11-04 15:04:43,132 - INFO - Starting epoch 50
+2024-11-04 15:04:43,133 - INFO - Running preprocessing command:
+2024-11-04 15:04:43,133 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_50 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 15:04:48,365 - INFO - Preprocessing completed successfully.
+2024-11-04 15:04:48,365 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_50\train.fr, data/en-fr/prepared\prepared\epoch_50\train.en
+2024-11-04 15:04:48,382 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_50\valid.fr, data/en-fr/prepared\prepared\epoch_50\valid.en
+2024-11-04 15:09:03,414 - INFO - Epoch 050: loss 2.234 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43 | clip 0.9999
+2024-11-04 15:09:03,414 - INFO - Validating at epoch 50...
+2024-11-04 15:09:07,206 - INFO - Epoch 50: Validation Perplexity: 10.6786
+2024-11-04 15:09:07,240 - INFO - Starting epoch 51
+2024-11-04 15:09:07,240 - INFO - Running preprocessing command:
+2024-11-04 15:09:07,240 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_51 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 15:09:12,435 - INFO - Preprocessing completed successfully.
+2024-11-04 15:09:12,436 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_51\train.fr, data/en-fr/prepared\prepared\epoch_51\train.en
+2024-11-04 15:09:12,452 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_51\valid.fr, data/en-fr/prepared\prepared\epoch_51\valid.en
+2024-11-04 15:13:24,212 - INFO - Epoch 051: loss 2.229 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.03 | clip 1
+2024-11-04 15:13:24,213 - INFO - Validating at epoch 51...
+2024-11-04 15:13:28,076 - INFO - Epoch 51: Validation Perplexity: 10.7906
+2024-11-04 15:13:28,095 - INFO - Starting epoch 52
+2024-11-04 15:13:28,095 - INFO - Running preprocessing command:
+2024-11-04 15:13:28,095 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_52 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 15:13:33,334 - INFO - Preprocessing completed successfully.
+2024-11-04 15:13:33,334 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_52\train.fr, data/en-fr/prepared\prepared\epoch_52\train.en
+2024-11-04 15:13:33,351 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_52\valid.fr, data/en-fr/prepared\prepared\epoch_52\valid.en
+2024-11-04 15:17:47,480 - INFO - Epoch 052: loss 2.221 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.03 | clip 1
+2024-11-04 15:17:47,480 - INFO - Validating at epoch 52...
+2024-11-04 15:17:51,411 - INFO - Epoch 52: Validation Perplexity: 10.7596
+2024-11-04 15:17:51,428 - INFO - Starting epoch 53
+2024-11-04 15:17:51,428 - INFO - Running preprocessing command:
+2024-11-04 15:17:51,428 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_53 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 15:17:56,728 - INFO - Preprocessing completed successfully.
+2024-11-04 15:17:56,729 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_53\train.fr, data/en-fr/prepared\prepared\epoch_53\train.en
+2024-11-04 15:17:56,745 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_53\valid.fr, data/en-fr/prepared\prepared\epoch_53\valid.en
+2024-11-04 15:22:06,665 - INFO - Epoch 053: loss 2.216 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.02 | clip 1
+2024-11-04 15:22:06,665 - INFO - Validating at epoch 53...
+2024-11-04 15:22:10,501 - INFO - Epoch 53: Validation Perplexity: 10.5825
+2024-11-04 15:22:10,534 - INFO - Starting epoch 54
+2024-11-04 15:22:10,534 - INFO - Running preprocessing command:
+2024-11-04 15:22:10,535 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_54 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 15:22:15,787 - INFO - Preprocessing completed successfully.
+2024-11-04 15:22:15,787 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_54\train.fr, data/en-fr/prepared\prepared\epoch_54\train.en
+2024-11-04 15:22:15,805 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_54\valid.fr, data/en-fr/prepared\prepared\epoch_54\valid.en
+2024-11-04 15:26:26,874 - INFO - Epoch 054: loss 2.208 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.19 | clip 1
+2024-11-04 15:26:26,875 - INFO - Validating at epoch 54...
+2024-11-04 15:26:30,796 - INFO - Epoch 54: Validation Perplexity: 10.6850
+2024-11-04 15:26:30,813 - INFO - Starting epoch 55
+2024-11-04 15:26:30,814 - INFO - Running preprocessing command:
+2024-11-04 15:26:30,814 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_55 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 15:26:36,147 - INFO - Preprocessing completed successfully.
+2024-11-04 15:26:36,148 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_55\train.fr, data/en-fr/prepared\prepared\epoch_55\train.en
+2024-11-04 15:26:36,165 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_55\valid.fr, data/en-fr/prepared\prepared\epoch_55\valid.en
+2024-11-04 15:30:46,005 - INFO - Epoch 055: loss 2.204 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.19 | clip 1
+2024-11-04 15:30:46,006 - INFO - Validating at epoch 55...
+2024-11-04 15:30:49,819 - INFO - Epoch 55: Validation Perplexity: 10.6504
+2024-11-04 15:30:49,837 - INFO - Starting epoch 56
+2024-11-04 15:30:49,838 - INFO - Running preprocessing command:
+2024-11-04 15:30:49,838 - INFO - python preprocess.py --source-lang fr --target-lang en --train-prefix-src data/en-fr/prepared\train.fr.txt --train-prefix-tgt data/en-fr/prepared\train.en.txt --valid-prefix-src data/en-fr/prepared\valid.fr.txt --valid-prefix-tgt data/en-fr/prepared\valid.en.txt --test-prefix-src data/en-fr/prepared\test.fr.txt --test-prefix-tgt data/en-fr/prepared\test.en.txt --dest-dir data/en-fr/prepared\prepared\epoch_56 --bpe_codes bpe.codes --bpe_dropout 0.2 --vocab-src data/en-fr/prepared\dict.fr --vocab-trg data/en-fr/prepared\dict.en --quiet
+2024-11-04 15:30:55,021 - INFO - Preprocessing completed successfully.
+2024-11-04 15:30:55,022 - INFO - Loading preprocessed training data: data/en-fr/prepared\prepared\epoch_56\train.fr, data/en-fr/prepared\prepared\epoch_56\train.en
+2024-11-04 15:30:55,039 - INFO - Loading preprocessed validation data: data/en-fr/prepared\prepared\epoch_56\valid.fr, data/en-fr/prepared\prepared\epoch_56\valid.en
+2024-11-04 15:35:03,974 - INFO - Epoch 056: loss 2.206 | lr 0.0003 | num_tokens 9.631 | batch_size 1 | grad_norm 43.06 | clip 1
+2024-11-04 15:35:03,974 - INFO - Validating at epoch 56...
+2024-11-04 15:35:07,897 - INFO - Epoch 56: Validation Perplexity: 10.8496
+2024-11-04 15:35:07,914 - INFO - No validation set improvements observed for 3 epochs. Early stop!

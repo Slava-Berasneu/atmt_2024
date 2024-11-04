@@ -38,8 +38,8 @@ def get_args():
     # Add optimization arguments
     parser.add_argument('--max-epoch', default=10000, type=int, help='force stop training at specified epoch')
     parser.add_argument('--clip-norm', default=4.0, type=float, help='clip threshold of gradients')
-    parser.add_argument('--lr', default=0.003, type=float, help='learning rate')
-    parser.add_argument('--patience', default=1, type=int,
+    parser.add_argument('--lr', default=0.0003, type=float, help='learning rate')
+    parser.add_argument('--patience', default=3, type=int,
                         help='number of epochs without improvement on validation set before early stopping')
 
     # Add checkpoint arguments
@@ -228,25 +228,6 @@ def main(args):
         epoch_dir = os.path.join(prepared_dir, f'epoch_{epoch}')
         os.makedirs(epoch_dir, exist_ok=True)
 
-        if epoch == 0:
-            # Convert pickled files to fixed plaintext files
-            pickled_train_src = os.path.join(base_dir, f'train.{args.source_lang}')
-            pickled_train_tgt = os.path.join(base_dir, f'train.{args.target_lang}')
-            pickled_valid_src = os.path.join(base_dir, f'valid.{args.source_lang}')
-            pickled_valid_tgt = os.path.join(base_dir, f'valid.{args.target_lang}')
-
-            logging.info(f"Converting pickled source training data: {pickled_train_src} to {fixed_train_src}")
-            convert_pickled_to_plaintext(pickled_train_src, src_dict, fixed_train_src)
-            logging.info(f"Converting pickled target training data: {pickled_train_tgt} to {fixed_train_tgt}")
-            convert_pickled_to_plaintext(pickled_train_tgt, tgt_dict, fixed_train_tgt)
-
-            logging.info(f"Converting pickled source validation data: {pickled_valid_src} to {fixed_valid_src}")
-            convert_pickled_to_plaintext(pickled_valid_src, src_dict, fixed_valid_src)
-            logging.info(f"Converting pickled target validation data: {pickled_valid_tgt} to {fixed_valid_tgt}")
-            convert_pickled_to_plaintext(pickled_valid_tgt, tgt_dict, fixed_valid_tgt)
-        else:
-            logging.info(f"Epoch {epoch}: Skipping pickled to plaintext conversion as plaintext files already exist.")
-
         # Define paths to existing dictionaries
         src_dict_path_existing = src_dict_path  # dict.fr
         tgt_dict_path_existing = tgt_dict_path  # dict.en
@@ -374,11 +355,6 @@ def main(args):
 
 
 if __name__ == '__main__':
-    torch.cuda.reset_max_memory_allocated()
-    torch.cuda.reset_peak_memory_stats()
-    gc.collect()
-    torch.cuda.empty_cache()
-    print(torch.cuda.memory_summary(device=None, abbreviated=False))
     args = get_args()
 
     logging.basicConfig(

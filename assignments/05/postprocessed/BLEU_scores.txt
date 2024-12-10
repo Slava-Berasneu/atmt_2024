@@ -1,0 +1,349 @@
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_1.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 17.1,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "44.2/22.1/12.6/7.0 (BP = 1.000 ratio = 1.342 hyp_len = 5222 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_2.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 19.0,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "47.6/24.3/14.0/8.0 (BP = 1.000 ratio = 1.235 hyp_len = 4808 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_3.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 19.1,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "48.9/24.6/14.0/7.9 (BP = 1.000 ratio = 1.195 hyp_len = 4651 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_4.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 18.6,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "47.7/24.0/13.7/7.7 (BP = 1.000 ratio = 1.221 hyp_len = 4752 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_5.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 20.0,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "50.6/25.8/14.8/8.3 (BP = 1.000 ratio = 1.144 hyp_len = 4451 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_6.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 19.7,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "50.2/25.4/14.5/8.2 (BP = 1.000 ratio = 1.146 hyp_len = 4462 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_7.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 20.9,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "52.0/26.7/15.4/8.9 (BP = 1.000 ratio = 1.101 hyp_len = 4285 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_8.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 20.8,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "51.8/26.5/15.3/8.9 (BP = 1.000 ratio = 1.099 hyp_len = 4277 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_9.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 22.0,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "53.8/27.8/16.3/9.6 (BP = 1.000 ratio = 1.052 hyp_len = 4093 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_10.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 22.2,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "54.1/28.0/16.4/9.8 (BP = 1.000 ratio = 1.041 hyp_len = 4052 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_11.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 22.6,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "54.6/28.4/16.8/10.0 (BP = 1.000 ratio = 1.010 hyp_len = 3929 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_12.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 22.2,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "54.0/28.0/16.4/9.8 (BP = 1.000 ratio = 1.010 hyp_len = 3929 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_13.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 22.7,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "55.1/28.8/17.1/10.2 (BP = 0.988 ratio = 0.988 hyp_len = 3845 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_14.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 22.6,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "55.2/29.1/17.3/10.4 (BP = 0.975 ratio = 0.975 hyp_len = 3794 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_15.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 22.1,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "55.6/29.1/17.4/10.4 (BP = 0.949 ratio = 0.950 hyp_len = 3699 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_16.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 22.1,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "55.9/29.6/17.7/10.7 (BP = 0.934 ratio = 0.936 hyp_len = 3643 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_17.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.9,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "56.3/29.9/17.9/10.7 (BP = 0.920 ratio = 0.923 hyp_len = 3594 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_18.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.9,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "56.0/29.9/18.0/10.8 (BP = 0.920 ratio = 0.923 hyp_len = 3591 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_19.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.8,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "57.4/31.1/19.0/11.5 (BP = 0.873 ratio = 0.881 hyp_len = 3428 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_20.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.8,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "57.9/31.3/19.1/11.6 (BP = 0.864 ratio = 0.873 hyp_len = 3397 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_21.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.5,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "58.3/31.5/19.3/11.7 (BP = 0.848 ratio = 0.858 hyp_len = 3340 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_22.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.5,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "58.5/31.8/19.4/11.8 (BP = 0.842 ratio = 0.854 hyp_len = 3322 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_23.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.3,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "58.5/31.9/19.6/11.8 (BP = 0.831 ratio = 0.844 hyp_len = 3284 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_24.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.2,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "58.6/32.1/19.8/12.0 (BP = 0.820 ratio = 0.834 hyp_len = 3246 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}
+
+(atmt311) C:\Users\viach\Documents\GitHub\atmt_2024>type assignments\05\postprocessed\model_translations_25.txt | sacrebleu data\en-fr\raw\test.en
+{
+ "name": "BLEU",
+ "score": 21.4,
+ "signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.4.3",
+ "verbose_score": "59.7/33.4/20.9/12.8 (BP = 0.790 ratio = 0.809 hyp_len = 3150 ref_len = 3892)",
+ "nrefs": "1",
+ "case": "mixed",
+ "eff": "no",
+ "tok": "13a",
+ "smooth": "exp",
+ "version": "2.4.3"
+}

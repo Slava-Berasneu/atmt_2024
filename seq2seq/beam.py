@@ -5,9 +5,7 @@ from queue import PriorityQueue
 
 
 class BeamSearch(object):
-    """ Defines a beam search object for a single input sentence. """
     def __init__(self, beam_size, max_len, pad):
-
         self.beam_size = beam_size
         self.max_len = max_len
         self.pad = pad
@@ -18,18 +16,14 @@ class BeamSearch(object):
         self._counter = count() # for correct ordering of nodes with same score
 
     def add(self, score, node):
-        """ Adds a new beam search node to the queue of current nodes """
         self.nodes.put((score, next(self._counter), node))
 
     def add_final(self, score, node):
-        """ Adds a beam search path that ended in EOS (= finished sentence) """
-        # ensure all node paths have the same length for batch ops
         missing = self.max_len - node.length
         node.sequence = torch.cat((node.sequence.cpu(), torch.tensor([self.pad]*missing).long()))
         self.final.put((score, next(self._counter), node))
 
     def get_current_beams(self):
-        """ Returns beam_size current nodes with the lowest negative log probability """
         nodes = []
         while not self.nodes.empty() and len(nodes) < self.beam_size:
             node = self.nodes.get()
@@ -37,32 +31,78 @@ class BeamSearch(object):
         return nodes
 
     def get_best(self):
-        """ Returns final node with the lowest negative log probability """
-        # Merge EOS paths and those that were stopped by
-        # max sequence length (still in nodes)
+        # Merge EOS and unfinished
         merged = PriorityQueue()
         for _ in range(self.final.qsize()):
-            node = self.final.get()
-            merged.put(node)
-
+            f = self.final.get()
+            merged.put(f)
         for _ in range(self.nodes.qsize()):
-            node = self.nodes.get()
-            merged.put(node)
-
+            n = self.nodes.get()
+            merged.put(n)
         node = merged.get()
         node = (node[0], node[2])
-
         return node
 
+    def best_final_score(self):
+        """Return the best final hypothesis eval score if exists, None otherwise."""
+        if self.final.empty():
+            return None
+        # Peek at best final without removing permanently:
+        finals = []
+        while not self.final.empty():
+            item = self.final.get()
+            finals.append(item)
+        # best final is the one with smallest score (since we store negative)
+        best = finals[0]  # after re-inserting, order is preserved
+        for f in finals[1:]:
+            if f[0] < best[0]:
+                best = f
+        # Put them back
+        for f in finals:
+            self.final.put(f)
+        # best is (score, counter, node), score = -node.eval(alpha)
+        best_node_eval = -best[0]
+        return best_node_eval
+
     def prune(self):
-        """ Removes all nodes but the beam_size best ones (lowest neg log prob) """
-        nodes = PriorityQueue()
-        # Keep track of how many search paths are already finished (EOS)
-        finished = self.final.qsize()
-        for _ in range(self.beam_size-finished):
-            node = self.nodes.get()
-            nodes.put(node)
-        self.nodes = nodes
+        """
+        Keep beam_size best nodes and prune out any incomplete hypotheses that
+        score worse than the best finished hypothesis (if any).
+        """
+        # If we have a best final hypothesis, get its eval score
+        best_final = self.best_final_score()
+
+        kept = []
+        # First, gather all nodes
+        while not self.nodes.empty():
+            n = self.nodes.get()
+            kept.append(n)
+
+        # Filter out nodes worse than best_final (if best_final is available)
+        if best_final is not None:
+            new_kept = []
+            for (score, c, node) in kept:
+                # score = -node.eval(alpha)
+                node_eval = -score
+                # Prune if node_eval < best_final
+                if node_eval >= best_final:
+                    new_kept.append((score, c, node))
+            kept = new_kept
+
+        # Keep only beam_size - already finished_count
+        finished_count = self.final.qsize()
+        max_to_keep = max(self.beam_size - finished_count, 0)
+        kept = sorted(kept, key=lambda x: x[0])
+        kept = kept[:max_to_keep]
+
+        self.nodes = PriorityQueue()
+        for k in kept:
+            self.nodes.put(k)
+
+    def is_done(self):
+        # If no unfinished nodes left and we can't expand more, we are done
+        return self.nodes.empty()
+
 
 
 class BeamSearchNode(object):

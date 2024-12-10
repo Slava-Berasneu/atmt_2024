@@ -20,16 +20,18 @@ def get_args():
     parser.add_argument('--seed', default=42, type=int, help='pseudo random number generator seed')
 
     # Add data arguments
-    parser.add_argument('--data', default='assignments/03/prepared', help='path to data directory')
-    parser.add_argument('--dicts', required=True, help='path to directory containing source and target dictionaries')
-    parser.add_argument('--checkpoint-path', default='checkpoints_asg4/checkpoint_best.pt', help='path to the model file')
+    parser.add_argument('--data', default='data/en-fr/prepared', help='path to data directory')
+    parser.add_argument('--dicts', default='data/en-fr/prepared',
+                        help='path to directory containing source and target dictionaries')
+    parser.add_argument('--checkpoint-path', default='assignments/03/baseline/checkpoints/checkpoint_best.pt',
+                        help='path to the model file')
     parser.add_argument('--batch-size', default=None, type=int, help='maximum number of sentences in a batch')
-    parser.add_argument('--output', default='model_translations.txt', type=str,
+    parser.add_argument('--output', default='assignments/05/pruning/model_translations_3.txt', type=str,
                         help='path to the output file destination')
     parser.add_argument('--max-len', default=100, type=int, help='maximum length of generated sequence')
 
     # Add beam search arguments
-    parser.add_argument('--beam-size', default=5, type=int, help='number of hypotheses expanded in beam search')
+    parser.add_argument('--beam-size', default=3, type=int, help='number of hypotheses expanded in beam search')
     # alpha hyperparameter for length normalization (described as lp in https://arxiv.org/pdf/1609.08144.pdf equation 14)
     parser.add_argument('--alpha', default=0.0, type=float, help='alpha for softer length normalization')
 
@@ -193,6 +195,10 @@ def main(args):
             # How do we know we always maintain the best sequences?
             for search in searches:
                 search.prune()
+
+            all_done = all(s.is_done() for s in searches)
+            if all_done:
+                break
 
         # Segment into sentences
         best_sents = torch.stack([search.get_best()[1].sequence[1:].cpu() for search in searches])
